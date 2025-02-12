@@ -1,0 +1,36 @@
+.ds-button {
+  height: 37px;
+  background-color: $base-color;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: background-color .15s ease-in, color .15s ease-in;
+
+  &:not(&__link):hover {
+    background-color: mix($base-color, #fff, 85);
+  }
+
+  &:not(&__link):active {
+    background-color: mix($base-color, #000, 65);
+  }
+
+  &__link {
+    background-color: transparent;
+    border-radius: 0;
+    color: $base-color;
+
+    &:hover {
+      color: mix($base-color, #fff, 65);
+    }
+
+    &:active {
+      color: mix($base-color, #000, 65);
+    }
+  }
+
+  &:focus-visible {
+    outline: 1px solid mix($base-color, #fff, 65);
+    outline-offset: 2px;
+  }
+}

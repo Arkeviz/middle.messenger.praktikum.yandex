@@ -1,0 +1,12 @@
+<main class="auth-container login-container">
+  <!--  {{#> DsDialog title="Удаление" labelOk="Удалить" }}-->
+  <!--    <p class="remove-text">Вы точно хотите удалить?</p>-->
+  <!--  {{/ DsDialog}}-->
+  <form class="auth-form login-form">
+    <h2 class="auth-title login-title">Вход</h2>
+    {{> DsInput label="Логин" type="text" errorMessage="Неверный логин" }}
+    {{> DsInput label="Пароль" type="password" }}
+    {{> DsButton label="Авторизоваться" type="primary" }}
+    {{> DsButton label="Нет аккаунта?" type="link" }}
+  </form>
+</main>

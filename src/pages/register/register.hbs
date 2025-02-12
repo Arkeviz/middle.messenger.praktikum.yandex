@@ -1,0 +1,14 @@
+<main class="auth-container register-container">
+  <form class="auth-form register-form">
+    <h2 class="auth-title register-title">Регистрация</h2>
+    {{> DsInput label="Почта" type="email" }}
+    {{> DsInput label="Логин" type="text" }}
+    {{> DsInput label="Имя" type="text" }}
+    {{> DsInput label="Фамилия" type="text" }}
+    {{> DsInput label="Телефон" type="tel" }}
+    {{> DsInput label="Пароль" type="password" }}
+    {{> DsInput label="Пароль (ещё раз)" type="password" errorMessage="Пароли не совпадают" }}
+    {{> DsButton label="Зарегистрироваться" type="primary" }}
+    {{> DsButton label="Войти" type="link" }}
+  </form>
+</main>

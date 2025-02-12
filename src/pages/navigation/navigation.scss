@@ -1,0 +1,13 @@
+.navigation {
+  &__list {
+    box-sizing: border-box;
+    width: fit-content;
+    height: fit-content;
+    font-size: 14px;
+  }
+
+  &__links {
+    width: fit-content;
+    margin-top: 4px;
+  }
+}
