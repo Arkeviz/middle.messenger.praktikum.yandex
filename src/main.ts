@@ -47,6 +47,7 @@ const pages = {
       { label: 'Телефон', value: '+7 (900) 420 42 37' },
     ]
   }],
+  'change-avatar': [ Pages.ChangeAvatarDialog ],
   'error-404': [ Pages.ErrPage404 ],
   'error-500': [ Pages.ErrPage500 ],
 }
@@ -68,6 +69,7 @@ document.addEventListener('click', e => {
   if (!page) return
 
   navigate(page)
+  window.scrollTo(0, 0);
 
   e.preventDefault()
   e.stopImmediatePropagation()

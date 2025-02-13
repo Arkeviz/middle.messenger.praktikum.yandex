@@ -1,0 +1,12 @@
+{{#> DsProfilePage }}
+  <p>Демонстрация диалога смены аватара пользователя</p>
+{{/ DsProfilePage }}
+
+{{#> DsDialog title="Загрузите файл" labelOk="Поменять" labelCancel="Нужно выбрать файл" }}
+  {{#> DsButton type="link" }}
+    <p class="profile-dialog__choice-text">
+      Выбрать файл<br>
+      на компьютере
+    </p>
+  {{/ DsButton}}
+{{/ DsDialog}}

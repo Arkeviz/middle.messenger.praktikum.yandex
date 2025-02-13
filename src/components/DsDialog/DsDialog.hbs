@@ -7,7 +7,7 @@
     <div class="ds-dialog__footer">
       {{> DsButton label=labelOk type="primary" }}
       {{#if labelCancel}}
-        {{> DsButton label=labelCancel type="link" }}
+        <p class="ds-dialog__confirm-error">{{labelCancel}}</p>
       {{/if}}
     </div>
   </div>
