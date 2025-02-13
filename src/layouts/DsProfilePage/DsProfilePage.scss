@@ -49,6 +49,11 @@
     border: none;
     border-radius: 50%;
 
+    &:focus, &:focus-visible {
+      outline-color: $base-color;
+      outline-offset: 4px;
+    }
+
     &-stub {
       width: 40px;
       height: 40px;

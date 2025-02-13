@@ -1,3 +1,5 @@
-export { DsButton } from './DsButton'
-export { DsInput } from './DsInput'
-export { DsDialog } from './DsDialog'
+export { DsButton } from './design-system/DsButton'
+export { DsInput } from './design-system/DsInput'
+export { DsDialog } from './design-system/DsDialog'
+
+export { ProfileInput } from './ProfileInput'

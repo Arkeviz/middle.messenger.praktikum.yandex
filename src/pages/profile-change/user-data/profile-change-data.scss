@@ -1,0 +1,11 @@
+.profile-change {
+  &__data {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 100%;
+    max-width: 510px;
+    margin-top: 97px;
+    min-height: 204px;
+  }
+}

@@ -1,6 +1,6 @@
 .ds-button {
   height: 37px;
-  padding: 0;
+  padding: 0 4px;
   border: none;
   border-radius: 8px;
   background-color: $base-color;
@@ -17,6 +17,7 @@
   }
 
   &__link {
+    padding: 0;
     background-color: transparent;
     border-radius: 0;
     color: $base-color;
@@ -39,6 +40,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 0;
     border-radius: 50%;
   }
 }
