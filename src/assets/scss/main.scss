@@ -1,3 +1,32 @@
+#app {
+  color: $text-base-color;
+}
+
+a {
+  color: $base-color;
+  text-decoration: none;
+
+  &:hover {
+    color: mix($base-color, #FFF, 75);
+  }
+
+  &:active {
+    color: mix($base-color, #000, 65);
+  }
+
+  &:visited {
+    color: #7A00FF;
+
+    &:hover {
+      color: mix(#7A00FF, #FFF, 60);
+    }
+
+    &:active {
+      color: mix(#7A00FF, #000, 45);
+    }
+  }
+}
+
 .auth-container {
   display: flex;
   justify-content: center;

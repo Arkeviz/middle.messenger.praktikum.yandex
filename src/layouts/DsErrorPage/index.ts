@@ -1,2 +1,2 @@
-import './errors.scss'
-export { default as DsErrorPage } from './errors.hbs?raw'
+import './DsErrorPage.scss'
+export { default as DsErrorPage } from './DsErrorPage.hbs?raw'

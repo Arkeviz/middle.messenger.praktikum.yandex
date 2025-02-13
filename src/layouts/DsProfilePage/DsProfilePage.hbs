@@ -1,0 +1,19 @@
+<div class="profile profile-container">
+  <nav class="profile__sidebar">
+    {{#> DsButton type="icon" }}
+      <svg class="profile__icon">
+        <use href="/src/icons/DsIconsSprite.svg#arrow-left" />
+      </svg>
+    {{/ DsButton }}
+  </nav>
+
+  <main class="profile__content">
+    <button class="profile__image">
+      <svg class="profile__image-stub">
+        <use href="/src/icons/DsIconsSprite.svg#profile-image-stub" />
+      </svg>
+      <span class="profile__image-change-text">Поменять<br>аватар</span>
+    </button>
+    {{> @partial-block }}
+  </main>
+</div>

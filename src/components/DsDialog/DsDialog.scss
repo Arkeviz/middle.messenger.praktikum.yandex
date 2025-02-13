@@ -11,13 +11,13 @@
   top: 50%;
   min-width: 340px;
   padding: 40px 30px;
-  background-color: white;
+  background-color: #FFF;
   border-radius: 12px ;
   transform: translate(-50%, -50%);
 
   &__title {
-    text-align: center;
     margin: 0;
+    text-align: center;
 
     &_error {
       color: $error-color;

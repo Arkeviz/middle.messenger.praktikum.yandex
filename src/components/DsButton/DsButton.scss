@@ -1,14 +1,15 @@
 .ds-button {
   height: 37px;
-  background-color: $base-color;
+  padding: 0;
   border: none;
   border-radius: 8px;
-  color: white;
+  background-color: $base-color;
+  color: #FFF;
   cursor: pointer;
   transition: background-color .15s ease-in, color .15s ease-in;
 
   &:not(&__link):hover {
-    background-color: mix($base-color, #fff, 85);
+    background-color: mix($base-color, #FFF, 85);
   }
 
   &:not(&__link):active {
@@ -21,7 +22,7 @@
     color: $base-color;
 
     &:hover {
-      color: mix($base-color, #fff, 65);
+      color: mix($base-color, #FFF, 65);
     }
 
     &:active {
@@ -30,7 +31,14 @@
   }
 
   &:focus-visible {
-    outline: 1px solid mix($base-color, #fff, 65);
+    outline: 1px solid mix($base-color, #FFF, 65);
     outline-offset: 2px;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
   }
 }

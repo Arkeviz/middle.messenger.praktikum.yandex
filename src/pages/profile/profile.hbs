@@ -1,0 +1,19 @@
+{{#> DsProfilePage }}
+  <h3 class="profile__name">{{firstname}}</h3>
+  <div class="profile__data">
+    {{#each fields}}
+      <div class="profile__row">
+        <p class="profile__label">{{label}}</p>
+        <p class="profile__value">{{value}}</p>
+      </div>
+      <hr class="profile__row-divider">
+    {{/each}}
+  </div>
+  <div class="profile__actions">
+    {{> DsButton label="Изменить данные" type="link" }}
+    <hr class="profile__row-divider">
+    {{> DsButton label="Изменить пароль" type="link" }}
+    <hr class="profile__row-divider">
+    {{> DsButton label="Выйти" type="link" }}
+  </div>
+{{/ DsProfilePage }}

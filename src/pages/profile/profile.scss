@@ -1,0 +1,64 @@
+.profile {
+  &__name {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: center;
+  }
+
+  &__data, &__actions {
+    width: 100%;
+    max-width: 510px;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  &__label, &__value {
+    margin: 0;
+  }
+
+  &__value {
+    color: $text-secondary-color;
+  }
+
+  &__row-divider {
+    width: 100%;
+    max-width: 510px;
+    height: 0;
+    margin: 10px 0;
+    border: none;
+    border-top: 1px solid $border-base;
+
+    &:last-child {
+      //display: none;
+      visibility: hidden;
+      border: none;
+      margin: 0 0 60px 0;
+    }
+  }
+
+  &__actions {
+    .ds-button__link {
+      height: fit-content;
+      font-size: 13px;
+      line-height: 13px;
+
+      &:last-child {
+        color: $error-color;
+
+        &:hover {
+          color: mix($error-color, #FFF, 65);
+        }
+        &:active {
+          color: mix($error-color, #000, 65);
+        }
+      }
+    }
+  }
+}
