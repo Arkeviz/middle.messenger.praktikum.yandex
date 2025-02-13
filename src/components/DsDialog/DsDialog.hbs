@@ -1,11 +1,11 @@
 <div class="ds-dialog-overlay">
-  <div class="ds-dialog">
-    <h2 class="ds-dialog__title {{dialogClass isErrorDialog}}">{{title}}</h2>
-    <div class="ds-dialog__body">
+  <div class="ds-dialog {{wrapperClass}}">
+    <h2 class="ds-dialog__title {{titleClass}} {{dialogTitleClass isErrorDialog}}">{{title}}</h2>
+    <div class="ds-dialog__body {{bodyClass}}">
       {{> @partial-block }}
     </div>
-    <div class="ds-dialog__footer">
-      {{> DsButton label=labelOk type="primary" }}
+    <div class="ds-dialog__footer {{footerClass}}">
+      {{> DsButton label=labelConfirm type="primary" }}
       {{#if labelCancel}}
         <p class="ds-dialog__confirm-error">{{labelCancel}}</p>
       {{/if}}

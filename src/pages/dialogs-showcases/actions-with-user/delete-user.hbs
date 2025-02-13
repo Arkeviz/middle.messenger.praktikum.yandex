@@ -1,0 +1,7 @@
+{{#> DsProfilePage }}
+  <p>Демонстрация диалога удаления пользователя</p>
+{{/ DsProfilePage }}
+
+{{#> DsDialog bodyClass="delete-user-dialog" title="Удалить пользователя" labelConfirm="Удалить" }}
+  {{> DsInput labelClass="delete-user-dialog__label" label="Логин" type="text" }}
+{{/ DsDialog}}

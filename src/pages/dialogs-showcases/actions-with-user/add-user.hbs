@@ -1,0 +1,7 @@
+{{#> DsProfilePage }}
+  <p>Демонстрация диалога добавления пользователя</p>
+{{/ DsProfilePage }}
+
+{{#> DsDialog bodyClass="add-user-dialog" title="Добавить пользователя" labelConfirm="Добавить" }}
+  {{> DsInput labelClass="add-user-dialog__label" label="Логин" type="text" }}
+{{/ DsDialog}}

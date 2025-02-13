@@ -12,7 +12,7 @@ Handlebars.registerHelper(
   (value) => value == 'icon'
 )
 Handlebars.registerHelper(
-  'dialogClass',
+  'dialogTitleClass',
   (value) => !!value ? 'ds-dialog__title_error' : ''
 )
 
@@ -48,6 +48,10 @@ const pages = {
     ]
   }],
   'change-avatar': [ Pages.ChangeAvatarDialog ],
+  'loaded-file': [ Pages.LoadedFileDialog ],
+  'on-load-error': [ Pages.OnLoadErrorDialog ],
+  'add-user': [ Pages.AddUserDialog ],
+  'delete-user': [ Pages.DeleteUserDialog ],
   'error-404': [ Pages.ErrPage404 ],
   'error-500': [ Pages.ErrPage500 ],
 }

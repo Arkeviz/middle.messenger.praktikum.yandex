@@ -1,10 +1,7 @@
-<main class="auth-container register-container">
-  <form class="auth-form register-form">
-    <h2 class="auth-title register-title">Регистрация</h2>
-    {{#each fields}}
-      {{> DsInput label=label type=type errorMessage=errorMessage }}
-    {{/each}}
-    {{> DsButton label="Зарегистрироваться" type="primary" }}
-    {{> DsButton label="Войти" type="link" }}
-  </form>
-</main>
+{{#>DsAuthPage formClass="register-form" title="Регистрация"}}
+  {{#each fields}}
+    {{> DsInput label=label type=type errorMessage=errorMessage }}
+  {{/each}}
+  {{> DsButton label="Зарегистрироваться" type="primary" }}
+  {{> DsButton label="Войти" type="link" }}
+{{/DsAuthPage}}

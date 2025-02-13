@@ -1,0 +1,10 @@
+.add-user-dialog,
+.delete-user-dialog {
+  padding-top: 50px;
+  padding-bottom: 33px;
+
+  &__label {
+    top: 0;
+    left: 0;
+  }
+}
