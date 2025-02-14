@@ -3,7 +3,10 @@ export { LoginPage, RegisterPage } from './auth'
 export { ProfilePage } from './profile'
 export { ProfileChangePage, ProfilePasswordChangePage } from './profile-change'
 export { ErrPage404, ErrPage500 } from './errors'
-export { ChangeAvatarDialog } from './dialogs-showcases/change-profile-avatar'
-export { LoadedFileDialog } from './dialogs-showcases/loaded-file'
-export { OnLoadErrorDialog } from './dialogs-showcases/on-load-error'
-export { AddUserDialog, DeleteUserDialog } from './dialogs-showcases/actions-with-user'
+export {
+  ChangeAvatarDialog,
+  LoadedFileDialog,
+  OnLoadErrorDialog,
+  AddUserDialog,
+  DeleteUserDialog,
+} from './dialogs-showcases'
