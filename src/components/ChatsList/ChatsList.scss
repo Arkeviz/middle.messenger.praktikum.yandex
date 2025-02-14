@@ -1,0 +1,109 @@
+.chats-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.chat-item-wrapper {
+  position: relative;
+  padding: 0 10px;
+
+  & + & {
+    .chat-item {
+      border-top: none;
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    visibility: hidden;
+    opacity: 0;
+    background-color: $secondary-color;
+    transition: opacity .2s ease, visibility 0s;
+  }
+
+  &_active::before,
+  &:hover::before {
+    visibility: visible;
+    opacity: 1;
+  }
+
+}
+
+.chat-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+      'avatar header time'
+      'avatar message icons';
+  column-gap: 10px;
+  align-items: center;
+  padding-bottom: 6px;
+  border-top: 1px solid $border-base;
+  border-bottom: 1px solid $border-base;
+
+  &__avatar {
+    grid-area: avatar;
+    width: 47px;
+    height: 47px;
+    border-radius: 50%;
+    background-color: $gray-bg;
+  }
+  &__name {
+    grid-area: header;
+
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 13px;
+  }
+  &__message {
+    grid-area: message;
+    display: -webkit-box;
+    overflow: hidden;
+    height: 30px;
+
+    color: $text-secondary-color;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+
+    &_yours {
+      color: $text-base-color;
+    }
+  }
+  &__time {
+    grid-area: time;
+
+    color: $text-secondary-color;
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 13px;
+    text-align: right;
+  }
+  &__counter {
+    grid-area: icons;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: end;
+    align-self: end;
+    width: 20px;
+    height: 20px;
+    background-color: $base-color;
+    border-radius: 50%;
+
+    color: #FFF;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 12px;
+    text-align: center;
+
+  }
+}

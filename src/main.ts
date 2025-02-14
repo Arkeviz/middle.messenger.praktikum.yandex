@@ -7,10 +7,11 @@ import * as Components from './components'
 import * as Layouts from './layouts'
 import * as Pages from './pages'
 
-Handlebars.registerHelper('isButtonIcon', (value) => value == 'icon')
-Handlebars.registerHelper('dialogTitleClass', (value) =>
-  value ? 'ds-dialog__title_error' : '',
-)
+import registerJSON from './mocks/register.json'
+import profileJSON from './mocks/profile.json'
+import changeProfileDataJSON from './mocks/change-profile-data.json'
+import changeProfilePasswordJSON from './mocks/change-profile-password.json'
+import emptyChatJSON from './mocks/empty-chat.json'
 
 const AppPartials = [...Object.entries(Layouts), ...Object.entries(Components)]
 
@@ -21,65 +22,14 @@ AppPartials.forEach(([name, template]) => {
 const pages = {
   login: [Pages.LoginPage],
   nav: [Pages.NavPage],
-  register: [
-    Pages.RegisterPage,
-    {
-      fields: [
-        { label: 'Почта', type: 'email' },
-        { label: 'Логин', type: 'text' },
-        { label: 'Имя', type: 'text' },
-        { label: 'Фамилия', type: 'text' },
-        { label: 'Телефон', type: 'tel' },
-        { label: 'Пароль', type: 'password' },
-        {
-          label: 'Пароль (ещё раз)',
-          type: 'password',
-          errorMessage: 'Пароли не совпадают',
-        },
-      ],
-    },
-  ],
-  profile: [
-    Pages.ProfilePage,
-    {
-      firstname: 'Алексей',
-      fields: [
-        { label: 'Почта', value: 'pochta@ya.ru' },
-        { label: 'Логин', value: 'Arkeviz' },
-        { label: 'Имя', value: 'Копосов' },
-        { label: 'Фамилия', value: 'Алексей' },
-        { label: 'Имя в чате', value: 'Lyoha' },
-        { label: 'Телефон', value: '+7 (900) 420 42 37' },
-      ],
-    },
-  ],
-  'change-profile-data': [
-    Pages.ProfileChangePage,
-    {
-      fields: [
-        { label: 'Почта', type: 'email', value: 'pochta@ya.ru' },
-        { label: 'Логин', type: 'text', value: 'Arkeviz' },
-        { label: 'Имя', type: 'text', value: 'Копосов' },
-        { label: 'Фамилия', type: 'text', value: 'Алексей' },
-        { label: 'Имя в чате', type: 'tel', value: 'Lyoha' },
-        { label: 'Телефон', type: 'tel', value: '+7 (900) 420 42 37' },
-      ],
-    },
-  ],
+  register: [Pages.RegisterPage, registerJSON],
+  profile: [Pages.ProfilePage, profileJSON],
+  'change-profile-data': [Pages.ProfileChangePage, changeProfileDataJSON],
   'change-profile-password': [
     Pages.ProfilePasswordChangePage,
-    {
-      fields: [
-        { label: 'Старый пароль', type: 'password' },
-        { label: 'Новый пароль', type: 'password' },
-        {
-          label: 'Повторите новый пароль',
-          type: 'password',
-          errorMessage: 'Пароли не совпадают',
-        },
-      ],
-    },
+    changeProfilePasswordJSON,
   ],
+  'empty-chat': [Pages.EmptyChatPage, emptyChatJSON],
   'change-avatar': [Pages.ChangeAvatarDialog],
   'loaded-file': [Pages.LoadedFileDialog],
   'on-load-error': [Pages.OnLoadErrorDialog],
