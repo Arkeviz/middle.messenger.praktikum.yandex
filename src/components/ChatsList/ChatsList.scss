@@ -3,11 +3,25 @@
   flex-direction: column;
   width: 100%;
   overflow-y: auto;
+  padding: 2px 0;
 }
 
 .chat-item-wrapper {
+  z-index: 5;
   position: relative;
   padding: 0 10px;
+  border: none;
+  background-color: transparent;
+  text-align: left;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid mix($base-color, #FFF, 65);
+  }
 
   & + & {
     .chat-item {
@@ -26,7 +40,8 @@
   }
 
   &_active::before,
-  &:hover::before {
+  &:hover::before,
+  &:focus-visible::before {
     visibility: visible;
     opacity: 1;
   }

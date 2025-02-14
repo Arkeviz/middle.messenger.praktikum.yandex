@@ -1,6 +1,6 @@
 <section class="chats-list">
   {{#each chats}}
-    <div class="chat-item-wrapper {{ activeChatClass this.isActive }}">
+    <button class="chat-item-wrapper {{ activeChatClass this.isActive }}">
       <div class="chat-item">
         <div class="chat-item__avatar"></div>
         <div class="chat-item__name">{{ this.name }}</div>
@@ -15,6 +15,6 @@
           <div class="chat-item__counter">{{ this.counter }}</div>
         {{/if}}
       </div>
-    </div>
+    </button>
   {{/each}}
 </section>
