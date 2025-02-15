@@ -2,11 +2,24 @@
   <p>Демонстрация диалога смены аватара пользователя</p>
 {{/ DsProfilePage }}
 
-{{#> DsDialog title="Загрузите файл" labelConfirm="Поменять" labelCancel="Нужно выбрать файл" }}
-  {{#> DsButton type="link" }}
-    <p class="profile-dialog__choice-text">
-      Выбрать файл<br>
-      на компьютере
-    </p>
-  {{/ DsButton}}
+{{#> DsDialog
+    title="Загрузите файл"
+    labelConfirm="Поменять"
+    labelCancel="Нужно выбрать файл"
+    wrapperClass="profile-dialog__file-upload"
+}}
+  <form class="profile-dialog__change-avatar">
+    <label class="profile-dialog__choice-file">
+      <span class="choice-file__text">
+        Выбрать файл<br>
+        на компьютере
+      </span>
+      <input name="avatar" type="file" accept=".jpeg,.jpg,.png" class="choice-file__input">
+    </label>
+
+    {{> DsButton actionType="submit" label=labelConfirm type="primary" }}
+    {{#if labelCancel}}
+      <p class="ds-dialog__confirm-error">{{labelCancel}}</p>
+    {{/if}}
+  </form>
 {{/ DsDialog}}

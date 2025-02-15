@@ -1,11 +1,12 @@
 <div class="profile-input {{wrapperClass}}">
   <label class="profile-input__label {{labelClass}}">{{label}}</label>
   <input
-    class="profile-input__input {{inputClass}}"
+    name="{{name}}"
     type="{{type}}"
     value="{{value}}"
     placeholder="{{placeholder}}"
     autocomplete="on"
+    class="profile-input__input {{inputClass}}"
   >
   <p class="profile-input__validation-label {{invalidLabelClass}}">{{errorMessage}}</p>
 </div>

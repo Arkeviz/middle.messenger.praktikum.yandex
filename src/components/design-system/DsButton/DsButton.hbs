@@ -3,7 +3,11 @@
     {{> @partial-block }}
   </button>
 {{else}}
-  <button class="ds-button ds-button__{{type}} {{class}}">
+  <button
+    type="{{actionType}}"
+    class="ds-button ds-button__{{type}}
+    {{class}}"
+  >
     {{#if label}}
       {{label}}
     {{else}}

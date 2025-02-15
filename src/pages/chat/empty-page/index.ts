@@ -1,2 +1,2 @@
-import './EmptyChatPage.scss'
-export { default as EmptyChatPage } from './EmptyChatPage.hbs?raw'
+import './empty-chat-page.scss'
+export { default as EmptyChatPage } from './empty-chat-page.hbs?raw'

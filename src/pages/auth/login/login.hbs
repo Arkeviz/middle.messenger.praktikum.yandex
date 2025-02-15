@@ -1,6 +1,6 @@
 {{#>DsAuthPage formClass="login-form" title="Вход"}}
-  {{> DsInput label="Логин" type="text" errorMessage="Неверный логин" }}
-  {{> DsInput label="Пароль" type="password" }}
+  {{> DsInput label="Логин" type="text" name="login" errorMessage="Неверный логин" }}
+  {{> DsInput label="Пароль" type="password" name="password" }}
   {{> DsButton label="Авторизоваться" type="primary" }}
-  {{> DsButton label="Нет аккаунта?" type="link" }}
+  {{> DsButton actionType="button" label="Нет аккаунта?" type="link" }}
 {{/DsAuthPage}}

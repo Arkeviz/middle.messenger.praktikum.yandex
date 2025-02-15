@@ -3,8 +3,8 @@
     {{#each fields}}
       {{> ProfileInput label=label type=type value=value }}
     {{/each}}
+    <div class="profile-change__save-button">
+      {{> DsButton label="Сохранить" }}
+    </div>
   </form>
-  <div class="profile-change__save-button">
-    {{> DsButton label="Сохранить" }}
-  </div>
 {{/ DsProfilePage }}

@@ -1,4 +1,16 @@
 {{#> DsProfilePage }}
+  {{#if avatar}}
+    <button class="profile__avatar">
+      <img src="{{avatar}}" alt="Аватар пользователя" class="profile__avatar-image">
+      <span class="profile__avatar-change-text">Поменять<br>аватар</span>
+    </button>
+  {{else}}
+    <button class="profile__avatar">
+      {{> DsIcon name="profile-image-stub" class="profile__avatar-stub" }}
+      <span class="profile__avatar-change-text">Поменять<br>аватар</span>
+    </button>
+  {{/if}}
+
   <h3 class="profile__name">{{firstname}}</h3>
   <div class="profile__data">
     {{#each fields}}
@@ -9,6 +21,7 @@
       <hr class="profile__row-divider">
     {{/each}}
   </div>
+
   <div class="profile__actions">
     {{> DsButton label="Изменить данные" type="link" }}
     <hr class="profile__row-divider">

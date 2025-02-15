@@ -11,7 +11,7 @@ import registerJSON from './mocks/register.json'
 import profileJSON from './mocks/profile.json'
 import changeProfileDataJSON from './mocks/change-profile-data.json'
 import changeProfilePasswordJSON from './mocks/change-profile-password.json'
-import emptyChatJSON from './mocks/empty-chat.json'
+import emptyChatJSON from './mocks/chats.json'
 
 const AppPartials = [...Object.entries(Layouts), ...Object.entries(Components)]
 

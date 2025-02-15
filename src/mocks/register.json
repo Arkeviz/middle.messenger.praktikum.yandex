@@ -1,13 +1,14 @@
 {
   "fields": [
-    { "label": "Почта", "type": "email" },
-    { "label": "Логин", "type": "text" },
-    { "label": "Имя", "type": "text" },
-    { "label": "Фамилия", "type": "text" },
-    { "label": "Телефон", "type": "tel" },
-    { "label": "Пароль", "type": "password" },
+    { "label": "Почта",   "name": "email",       "type": "email" },
+    { "label": "Логин",   "name": "login",       "type": "text" },
+    { "label": "Имя",     "name": "first_name",  "type": "text" },
+    { "label": "Фамилия", "name": "second_name", "type": "text" },
+    { "label": "Телефон", "name": "phone",       "type": "tel" },
+    { "label": "Пароль",  "name": "password",    "type": "password" },
     {
       "label": "Пароль (ещё раз)",
+      "name": "password_repeat",
       "type": "password",
       "errorMessage": "Пароли не совпадают"
     }
