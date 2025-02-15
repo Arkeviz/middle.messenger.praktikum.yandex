@@ -11,7 +11,9 @@ import registerJSON from './mocks/register.json'
 import profileJSON from './mocks/profile.json'
 import changeProfileDataJSON from './mocks/change-profile-data.json'
 import changeProfilePasswordJSON from './mocks/change-profile-password.json'
-import emptyChatJSON from './mocks/chats.json'
+import chatsJSON from './mocks/chats.json'
+import currentChatJSON from './mocks/current-chat-messages.json'
+import chatsWithCurrentJSON from './mocks/chats-with-active.json'
 
 const AppPartials = [...Object.entries(Layouts), ...Object.entries(Components)]
 
@@ -29,7 +31,15 @@ const pages = {
     Pages.ProfilePasswordChangePage,
     changeProfilePasswordJSON,
   ],
-  'empty-chat': [Pages.EmptyChatPage, emptyChatJSON],
+  'empty-chat': [Pages.EmptyChatPage, chatsJSON],
+  'current-chat': [
+    Pages.CurrentChatPage,
+    { ...currentChatJSON, ...chatsWithCurrentJSON },
+  ],
+  'chat-search-results': [
+    Pages.ChatSearchResultsPage,
+    { isSearchResults: true, ...chatsJSON },
+  ],
   'change-avatar': [Pages.ChangeAvatarDialog],
   'loaded-file': [Pages.LoadedFileDialog],
   'on-load-error': [Pages.OnLoadErrorDialog],

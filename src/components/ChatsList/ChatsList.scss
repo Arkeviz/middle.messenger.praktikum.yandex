@@ -7,7 +7,6 @@
 }
 
 .chat-item-wrapper {
-  z-index: 5;
   position: relative;
   padding: 0 10px;
   border: none;
@@ -69,6 +68,7 @@
     border-radius: 50%;
     background-color: $gray-bg;
   }
+
   &__name {
     grid-area: header;
 
@@ -76,6 +76,7 @@
     font-size: 13px;
     line-height: 13px;
   }
+
   &__message {
     grid-area: message;
     display: -webkit-box;
@@ -93,6 +94,7 @@
       color: $text-base-color;
     }
   }
+
   &__time {
     grid-area: time;
 
@@ -102,6 +104,7 @@
     line-height: 13px;
     text-align: right;
   }
+
   &__counter {
     grid-area: icons;
     display: flex;
@@ -119,6 +122,19 @@
     font-size: 11px;
     line-height: 12px;
     text-align: center;
+  }
+}
 
+.chat-item_search  {
+  .chat-item__message,
+  .chat-item__time,
+  .chat-item__counter {
+    display: none;
+  }
+
+  .chat-item {
+    display: flex;
+    width: 100%;
+    padding-top: 6px;
   }
 }

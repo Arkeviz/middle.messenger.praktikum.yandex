@@ -1,9 +1,9 @@
-<section class="chats-list">
+<section class="chats-list {{# if isSearchResults}}chat-item_search{{/if}}">
   {{#each chats}}
     <button class="chat-item-wrapper {{ activeChatClass this.isActive }}">
       <div class="chat-item">
         {{# if this.avatar}}
-          <img src="{{this.avatar}}" alt="Аватар чата" class="chat-item__avatar">
+          <img class="chat-item__avatar" src="{{this.avatar}}" alt="Аватар чата">
         {{else}}
           <div class="chat-item__avatar"></div>
         {{/if}}
@@ -15,6 +15,7 @@
           {{/if}}
           {{ this.message }}
         </div>
+
         <div class="chat-item__time">{{ this.time }}</div>
         {{#if this.counter}}
           <div class="chat-item__counter">{{ this.counter }}</div>
