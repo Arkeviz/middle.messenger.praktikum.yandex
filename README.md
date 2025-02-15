@@ -9,6 +9,10 @@ git clone https://github.com/Arkeviz/middle.messenger.praktikum.yandex.git
 npm install
 ```
 ## Команды
+Для запуска проекта
+```shell
+npm run start
+```
 Для запуска в dev-режиме:
 ```shell
 npm run dev
