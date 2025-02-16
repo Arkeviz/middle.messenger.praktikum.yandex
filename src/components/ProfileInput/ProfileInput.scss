@@ -1,0 +1,44 @@
+.profile-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 4px;
+
+  border-bottom: 1px solid $border-base;
+
+  &:has(.profile-input__input:focus) {
+    border-color: $base-color;
+  }
+
+  &__input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: $text-secondary-color;
+    text-align: end;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__label {
+    white-space: nowrap;
+  }
+
+  &__validation-label {
+    position: absolute;
+    right: 0;
+    bottom: -16px;
+    visibility: hidden;
+    margin: 0;
+    color: $error-color;
+    font-size: 8px;
+    font-weight: 400;
+  }
+
+  &__input:invalid ~ &__validation-label {
+    visibility: visible;
+  }
+}

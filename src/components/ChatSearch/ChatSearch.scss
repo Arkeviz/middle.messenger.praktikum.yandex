@@ -1,0 +1,48 @@
+.chat-search {
+  position: relative;
+  margin-bottom: 14px;
+  margin-left: 10px;
+
+  &__input {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 290px;
+    padding: 10px 10px 10px 40%;
+    background-color: $gray-bg;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+
+    transition: padding-left .1s ease;
+
+    &::placeholder {
+      color: $text-secondary-color;
+    }
+
+    &:focus, &:focus-visible, &:not(:placeholder-shown) {
+      padding-left: 14%;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    top: 10px;
+    left: 30%;
+    transition: left .1s ease;
+
+    .ds-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    &_hidden {
+      display: none;
+    }
+  }
+
+  &__input:focus + &__label,
+  &__input:focus-visible + &__label,
+  &__input:not(:placeholder-shown) + &__label,{
+    left: 4%;
+  }
+}

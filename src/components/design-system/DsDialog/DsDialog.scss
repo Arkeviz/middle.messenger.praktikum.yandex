@@ -1,0 +1,50 @@
+.ds-dialog-overlay {
+  position: fixed;
+  z-index: 8000;
+  inset: 0;
+  background-color: rgba(0,0,0,.4);
+}
+
+.ds-dialog {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  min-width: 340px;
+  padding: 40px 30px;
+  background-color: #FFF;
+  border-radius: 12px ;
+  transform: translate(-50%, -50%);
+
+  &__title {
+    margin: 0;
+    text-align: center;
+
+    &_error {
+      color: $error-color;
+    }
+  }
+
+  &__body {
+    text-align: center;
+    padding: 45px 0;
+  }
+
+  &__footer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__confirm-error {
+    width: 100%;
+    margin: 14px 0 0 0;
+    color: $error-color;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 11px;
+    text-align: center;
+  }
+
+  &:has(p.ds-dialog__confirm-error), {
+    padding-bottom: 30px;
+  }
+}

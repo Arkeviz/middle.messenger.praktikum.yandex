@@ -1,0 +1,26 @@
+<section class="chats-list {{# if isSearchResults}}chat-item_search{{/if}}">
+  {{#each chats}}
+    <button class="chat-item-wrapper {{ activeChatClass this.isActive }}">
+      <div class="chat-item">
+        {{# if this.avatar}}
+          <img class="chat-item__avatar" src="{{this.avatar}}" alt="Аватар чата">
+        {{else}}
+          <div class="chat-item__avatar"></div>
+        {{/if}}
+
+        <div class="chat-item__name">{{ this.name }}</div>
+        <div class="chat-item__message">
+          {{#if this.isLastMessageYours}}
+            <span class="chat-item__message_yours">Вы: </span>
+          {{/if}}
+          {{ this.message }}
+        </div>
+
+        <div class="chat-item__time">{{ this.time }}</div>
+        {{#if this.counter}}
+          <div class="chat-item__counter">{{ this.counter }}</div>
+        {{/if}}
+      </div>
+    </button>
+  {{/each}}
+</section>

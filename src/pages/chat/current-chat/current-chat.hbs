@@ -1,0 +1,69 @@
+{{#> DsChatPage }}
+  <div class="chat-content-wrapper">
+    <header class="chat__header">
+      {{# if this.avatar}}
+        <img class="chat__header-avatar" src="{{this.avatar}}" alt="Аватар открытого чата">
+      {{else}}
+        <div class="chat__header-avatar"></div>
+      {{/if}}
+      <p class="chat__header-name">Вадим</p>
+
+      <button class="chat__header-settings-button">
+        {{> DsIcon name="settings-dots" class="chat__header-settings" }}
+      </button>
+
+    </header>
+
+    <div class="chat__messages">
+      <div class="chat__messages-wrapper">
+        <div class="chat__messages-date">19 июня</div>
+          {{# each messages }}
+            <div class="chat-message {{#if this.isOtherMessage }}chat-message_other-user{{/if}}">
+              {{# if this.image}}
+                <div class="chat-message chat-message_other-user">
+                  <img class="chat-message__image" src="{{ this.image }}" alt="{{ this.image }}">
+                  <time class="chat-message__date chat-message__date_float">
+                  {{# unless this.isOtherMessage}}
+                    {{> DsIcon name="check-double" class="chat-message__check" }}
+                  {{/unless}}
+                    {{ this.time }}
+                  </time>
+                </div>
+              {{else}}
+                <p class="chat-message__text">
+                  {{ this.content }}
+                  <time class="chat-message__date">
+                    {{# unless this.isOtherMessage}}
+                      {{> DsIcon name="check-double" class="chat-message__check" }}
+                    {{/unless}}
+                    {{ this.time }}
+                  </time>
+                </p>
+              {{/if}}
+            </div>
+          {{/each}}
+      </div>
+    </div>
+
+    <form class="chat__footer">
+      <button type="button" class="chat-footer__attachment-button">
+        {{> DsIcon name="attachment" class="chat-footer__attachment-button" }}
+      </button>
+
+      <div class="chat-footer__input-wrapper">
+        <label class="chat-footer__input-label">Введите сообщение</label>
+        <input
+            name="message"
+            type="text"
+            placeholder="Сообщение"
+            autocomplete="off"
+            class="chat-footer__input"
+        >
+      </div>
+
+      {{#> DsButton actionType="submit" type="icon" class="chat-footer__send-button" }}
+        {{> DsIcon name="arrow-right" }}
+      {{/ DsButton }}
+    </form>
+  </div>
+{{/DsChatPage}}

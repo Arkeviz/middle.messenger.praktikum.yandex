@@ -1,0 +1,17 @@
+{{#if (isButtonIcon type)}}
+  <button class="ds-button ds-button__icon {{class}}">
+    {{> @partial-block }}
+  </button>
+{{else}}
+  <button
+    type="{{actionType}}"
+    class="ds-button ds-button__{{type}}
+    {{class}}"
+  >
+    {{#if label}}
+      {{label}}
+    {{else}}
+      {{> @partial-block }}
+    {{/if}}
+  </button>
+{{/if}}

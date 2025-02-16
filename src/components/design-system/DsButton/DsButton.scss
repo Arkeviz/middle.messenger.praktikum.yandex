@@ -1,0 +1,48 @@
+.ds-button {
+  height: 37px;
+  padding: 0 4px;
+  border: none;
+  border-radius: 8px;
+  background-color: $base-color;
+  color: #FFF;
+  cursor: pointer;
+  transition: background-color .15s ease-in, color .15s ease-in;
+
+  &:not(&__link):hover {
+    background-color: mix($base-color, #FFF, 85);
+  }
+
+  &:not(&__link):active {
+    background-color: mix($base-color, #000, 65);
+  }
+
+  &__link {
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+    color: $base-color;
+
+    &:hover {
+      color: mix($base-color, #FFF, 65);
+    }
+
+    &:active {
+      color: mix($base-color, #000, 65);
+    }
+  }
+
+  &:focus-visible {
+    outline: 1px solid mix($base-color, #FFF, 65);
+    outline-offset: 2px;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border-radius: 50%;
+  }
+}
