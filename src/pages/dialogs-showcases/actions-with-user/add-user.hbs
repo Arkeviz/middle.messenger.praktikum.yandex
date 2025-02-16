@@ -3,5 +3,7 @@
 {{/ DsProfilePage }}
 
 {{#> DsDialog bodyClass="add-user-dialog" title="Добавить пользователя" labelConfirm="Добавить" }}
-  {{> DsInput labelClass="add-user-dialog__label" label="Логин" type="text" }}
+  <form class="add-user-dialog__form">
+    {{> DsInput labelClass="add-user-dialog__input" label="Логин" type="text" }}
+  </form>
 {{/ DsDialog}}

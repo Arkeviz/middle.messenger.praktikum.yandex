@@ -47,10 +47,11 @@ const pages = {
   'delete-user': [Pages.DeleteUserDialog],
   'error-404': [Pages.ErrPage404],
   'error-500': [Pages.ErrPage500],
-}
+} as const
 
-function navigate(page: string) {
-  // @ts-ignore
+type TPageKey = keyof typeof pages
+
+function navigate(page: TPageKey) {
   const [source, context] = pages[page]
   const container = document.getElementById('app')!
 
@@ -61,13 +62,18 @@ function navigate(page: string) {
 document.addEventListener('DOMContentLoaded', () => navigate('nav'))
 
 document.addEventListener('click', (e) => {
-  // @ts-ignore
-  const page = e.target.getAttribute('data-page')
-  if (!page) return
+  const { target } = e
+  if (target instanceof HTMLElement) {
+    const page = target.getAttribute('data-page')
 
-  navigate(page)
-  window.scrollTo(0, 0)
+    if (!page || !(page in pages)) {
+      return
+    }
 
-  e.preventDefault()
-  e.stopImmediatePropagation()
+    navigate(page as TPageKey)
+    window.scrollTo(0, 0)
+
+    e.preventDefault()
+    e.stopImmediatePropagation()
+  }
 })

@@ -45,8 +45,8 @@
       </div>
     </div>
 
-    <div class="chat__footer">
-      <button class="chat-footer__attachment-button">
+    <form class="chat__footer">
+      <button type="button" class="chat-footer__attachment-button">
         {{> DsIcon name="attachment" class="chat-footer__attachment-button" }}
       </button>
 
@@ -61,9 +61,9 @@
         >
       </div>
 
-      {{#> DsButton type="icon" class="chat-footer__send-button" }}
+      {{#> DsButton actionType="submit" type="icon" class="chat-footer__send-button" }}
         {{> DsIcon name="arrow-right" }}
       {{/ DsButton }}
-    </div>
+    </form>
   </div>
 {{/DsChatPage}}
