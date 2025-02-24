@@ -1,0 +1,48 @@
+.ds-input {
+  position: relative;
+  width: 100%;
+
+  &__input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid $base-color;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__input[type="password"] {
+    &:invalid {
+      color: $error-color;
+    }
+  }
+
+  &__label {
+    position: absolute;
+    top: 0;
+    z-index: -1;
+    color: $text-secondary-color;
+    font-size: 13px;
+    transform-origin: left center;
+    transition: transform 200ms;
+  }
+
+  &__input:focus + &__label,
+  &__input:not(:placeholder-shown) + &__label{
+    transform: translateY(-100%) scale(0.75);
+  }
+
+  &__validation-label {
+    visibility: hidden;
+    margin-top: 8px;
+    color: $error-color;
+    font-size: 8px;
+    font-weight: 400;
+  }
+
+  &__input:invalid ~ &__validation-label {
+    visibility: visible;
+  }
+}

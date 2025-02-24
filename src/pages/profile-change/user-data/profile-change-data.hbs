@@ -1,0 +1,10 @@
+{{#> DsProfilePage }}
+  <form class="profile-change__data">
+    {{#each fields}}
+      {{> ProfileInput label=label type=type value=value }}
+    {{/each}}
+    <div class="profile-change__save-button">
+      {{> DsButton actionType="submit" label="Сохранить" }}
+    </div>
+  </form>
+{{/ DsProfilePage }}
