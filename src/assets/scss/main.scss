@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 #app {
   width: 100vw;
   height: 100vh;
@@ -8,22 +10,22 @@ a {
   color: $base-color;
 
   &:hover {
-    color: mix($base-color, #FFF, 75);
+    color: color.mix($base-color, #FFF, 75%);
   }
 
   &:active {
-    color: mix($base-color, #000, 65);
+    color: color.mix($base-color, #000, 65%);
   }
 
   &:visited {
     color: #7A00FF;
 
     &:hover {
-      color: mix(#7A00FF, #FFF, 60);
+      color: color.mix(#7A00FF, #FFF, 60%);
     }
 
     &:active {
-      color: mix(#7A00FF, #000, 45);
+      color: color.mix(#7A00FF, #000, 45%);
     }
   }
 }

@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 .chat-content-wrapper {
   width: 100%;
   height: 100%;
@@ -16,7 +18,6 @@
     border-bottom: 1px solid $border-base;
 
     &-settings {
-
       &-button {
         width: 24px;
         height: 24px;
@@ -33,11 +34,11 @@
         }
 
         &:active {
-          color: mix($base-color, #000, 65);
+          color: color.mix($base-color, #000, 65%);
         }
 
         &:focus-visible {
-          outline: 1px solid mix($base-color, #FFF, 65);
+          outline: 1px solid color.mix($base-color, #FFF, 65%);
           color: $base-color;
         }
       }
@@ -85,7 +86,7 @@
     max-width: 400px;
     min-height: fit-content;
     padding: 11px;
-    border-radius: 10px 10px 0 10px;
+    border-radius: 10px 10px 0;
     background-color: $secondary-color;
     font-weight: 500;
     font-size: 12px;
@@ -100,7 +101,7 @@
     &_other-user {
       overflow: hidden;
       align-self: start;
-      border-radius: 0 10px 10px 10px;
+      border-radius: 0 10px 10px;
       background-color: $chat-other-users-message-bg;
     }
 
@@ -125,7 +126,7 @@
         text-align: center;
         right: 11px;
         bottom: 11px;
-        background-color: rgba(82, 82, 82, 0.5);
+        background-color: rgb(82 82 82 / 50%);
         border-radius: 16px;
         color: #FFF;
         padding: 2px 6px;
@@ -175,11 +176,11 @@
       }
 
       &:active {
-        color: mix($base-color, #000, 65);
+        color: color.mix($base-color, #000, 65%);
       }
 
       &:focus-visible {
-        outline: 1px solid mix($base-color, #FFF, 65);
+        outline: 1px solid color.mix($base-color, #FFF, 65%);
         outline-offset: 2px;
         color: $base-color;
       }

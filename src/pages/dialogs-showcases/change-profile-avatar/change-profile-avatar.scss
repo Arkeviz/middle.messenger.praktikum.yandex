@@ -1,10 +1,11 @@
+@use 'sass:color';
+
 .profile-dialog {
-
-
   &__file-upload {
     .ds-dialog__body {
       padding-bottom: 0;
     }
+
     /*
       избавляемся от обычного футера, чтобы добавить свой,
       но уже внутри `form`
@@ -42,11 +43,11 @@
   cursor: pointer;
 
   &:hover {
-    color: mix($base-color, #FFF, 65);
+    color: color.mix($base-color, #FFF, 65%);
   }
 
   &:active {
-    color: mix($base-color, #000, 65);
+    color: color.mix($base-color, #000, 65%);
   }
 }
 

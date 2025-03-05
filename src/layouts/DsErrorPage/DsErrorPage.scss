@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 .error {
   display: flex;
   flex-direction: column;
@@ -18,7 +20,7 @@
   &__message {
     width: fit-content;
     font-weight: 500;
-    margin: 0 0 69px 0;
+    margin: 0 0 69px;
     font-size: 20px;
     line-height: 20px;
     text-align: center;
@@ -32,22 +34,22 @@
     text-decoration: none;
 
     &:hover {
-      color: mix($base-color, #FFF, 85);
+      color: color.mix($base-color, #FFF, 85%);
     }
 
     &:active {
-      color: mix($base-color, #000, 65);
+      color: color.mix($base-color, #000, 65%);
     }
 
     &:visited {
       color: $base-color;
 
       &:hover {
-        color: mix($base-color, #FFF, 85);
+        color: color.mix($base-color, #FFF, 85%);
       }
 
       &:active {
-        color: mix($base-color, #000, 65);
+        color: color.mix($base-color, #000, 65%);
       }
     }
   }
