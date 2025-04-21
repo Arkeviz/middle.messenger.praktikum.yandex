@@ -1,2 +1,3 @@
 import './DsInput.scss'
-export { default as DsInput } from './DsInput.hbs?raw'
+export { default as DsInput } from './DsInput.ts'
+export { default as DsInputField } from './DsInputField.ts'

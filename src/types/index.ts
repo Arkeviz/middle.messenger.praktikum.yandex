@@ -4,3 +4,27 @@ export interface IBaseBlockProps {
   events?: Record<string, EventListener>
   [key: string]: unknown
 }
+
+export type TFormField = {
+  value: string
+  rules: TValidationRule[]
+}
+
+export type TFormState = Record<string, TFormField>
+
+export type TValidationRule = {
+  message: string
+  validator: (formState: TFormState, value: string) => boolean
+}
+
+export type TInputField =
+  | 'email'
+  | 'login'
+  | 'password'
+  | 'password_repeat'
+  | 'first_name'
+  | 'second_name'
+  | 'username'
+  | 'phone'
+  | 'password_old'
+  | 'message'
