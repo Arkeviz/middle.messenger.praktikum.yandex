@@ -15,12 +15,26 @@
     outline-offset: 2px;
   }
 
-  &:not(&__link):hover {
-    background-color: color.mix($base-color, #FFF, 85%);
-  }
+  &:not(&__link) {
+    &:disabled {
+      cursor: not-allowed;
 
-  &:not(&__link):active {
-    background-color: color.mix($base-color, #000, 65%);
+      &:hover {
+        background-color: $base-color;
+      }
+
+      &:active {
+        background-color: $base-color;
+      }
+    }
+
+    &:hover {
+      background-color: color.mix($base-color, #FFF, 85%);
+    }
+
+    &:active {
+      background-color: color.mix($base-color, #000, 65%);
+    }
   }
 
   &__link {
@@ -28,6 +42,18 @@
     background-color: transparent;
     border-radius: 0;
     color: $base-color;
+
+    &:disabled {
+      cursor: not-allowed;
+
+      &:hover {
+        color: $base-color;
+      }
+
+      &:active {
+        color: $base-color;
+      }
+    }
 
     &:hover {
       color: color.mix($base-color, #FFF, 65%);

@@ -18,7 +18,7 @@ export default class DsButton extends Block<IDsButtonProps> {
 
     const attrs: Record<string, string> = {
       type: props.nativeType ?? 'button',
-      disabled: props.disabled ? 'true' : 'false',
+      ...(props.disabled && { disabled: true }),
       ...(props.dataPage && { 'data-page': props.dataPage }),
     }
 
