@@ -1,4 +1,9 @@
-type TCallback = (...args: unknown[]) => unknown
+/**
+ * Тип callback'а для Event Bus. <br>
+ * Используется `any`, т.к. сложно типизировать
+ * регистрацию хуков жизненного цикла Блока
+ */
+type TCallback = (...args: any[]) => unknown
 
 export default class EventBus<Event extends string> {
   private readonly listeners: Record<Event, TCallback[]> = {} as Record<

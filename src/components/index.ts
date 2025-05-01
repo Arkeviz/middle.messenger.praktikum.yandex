@@ -1,7 +1,8 @@
 export { DsButton } from './design-system/DsButton'
-export { DsIcon } from './design-system/DsIcon'
-export { DsInput } from './design-system/DsInput'
 export { DsDialog } from './design-system/DsDialog'
+export { DsForm } from './design-system/DsForm'
+export { DsIcon } from './design-system/DsIcon'
+export { DsInput, DsInputField } from './design-system/DsInput'
 
 export { ProfileInput } from './ProfileInput'
 export { ChatSearch } from './ChatSearch'

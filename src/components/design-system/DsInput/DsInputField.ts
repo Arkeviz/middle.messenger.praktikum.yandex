@@ -19,29 +19,42 @@ interface IDsInputFieldProps extends IBaseBlockProps {
   onBlur?: (event: Event) => void
 }
 
+/**
+ * Переключение класса-модификатора `ds-input__input_filled`
+ * в зависимости от наличия значения инпута
+ * для корректной работы перемещения `ds-input__label`
+ * @param event
+ */
+const toggleInputClassModifier = (event: Event) => {
+  const target: HTMLInputElement = event.target as HTMLInputElement
+
+  if (target?.value) target?.classList.add('ds-input__input_filled')
+  else target?.classList.remove('ds-input__input_filled')
+}
+
 export default class DsInputField extends Block<IDsInputFieldProps> {
   constructor(props: IDsInputFieldProps) {
     const events = {
       ...(props.onInput && { input: props.onInput }),
       ...(props.onChange && { change: props.onChange }),
       ...(props.onBlur && { blur: props.onBlur }),
+      focusout: toggleInputClassModifier,
     }
     super('div', {
       ...props,
       className: 'ds-input' + (props.className ?? ''),
       DsInput: new DsInput({
-        type: props.type,
-        placeholder: props.placeholder,
         autocomplete: props.autocomplete,
-        name: props.name,
-        className: '',
+        ...(props.type && { type: props.type }),
+        ...(props.name && { name: props.name }),
+        ...(props.placeholder && { placeholder: props.placeholder }),
         events,
       }),
     })
   }
 
   render(): string {
-    // TODO пофиксить стили связанные с `labelClass`
+    // TODO пофиксить стили связанные с `labelClass у диалогов`
     return `
       {{{DsInput}}}
       <label class="ds-input__label">{{label}}</label>

@@ -1,14 +1,17 @@
 import type { IBaseBlockProps } from '../../../types'
 import Block from '../../../core/block.ts'
+import { PAGES } from '../../../constants'
 import { DsIcon } from '../DsIcon'
 
 interface IDsButtonProps extends IBaseBlockProps {
-  content?: string | Block
   nativeType?: HTMLButtonElement['type']
   type?: 'primary' | 'link' | 'icon'
+  /** Текст кнопки */
+  content?: string | Block
   iconName?: string
   disabled?: boolean
-  dataPage?: string
+  /** Страница, на которую перекидывает кнопка */
+  dataPage?: PAGES
   onClick?: (event: Event) => void
 }
 

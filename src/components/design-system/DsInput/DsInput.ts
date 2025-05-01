@@ -8,24 +8,23 @@ interface IInputProps extends IBaseBlockProps {
   name?: string
   value?: string
   events?: {
-    blur?: (event: Event) => void
-    change?: (event: Event) => void
-    input?: (event: Event) => void
+    [key: string]: (event: Event) => void
   }
 }
 
 export default class DsInput extends Block<IInputProps> {
   constructor(props: IInputProps) {
     const className = props.className ? ' ' + props.className : ''
+
     super('input', {
       ...props,
       className: 'ds-input__input' + className,
       attrs: {
         type: props.type ?? 'text',
-        placeholder: props.placeholder ?? '',
         autocomplete: props.autocomplete ?? 'off',
-        name: props.name ?? '',
-        value: props.value ?? '',
+        ...(props.placeholder && { placeholder: props.placeholder }),
+        ...(props.name && { name: props.name }),
+        ...(props.value && { value: props.value }),
       },
     })
   }

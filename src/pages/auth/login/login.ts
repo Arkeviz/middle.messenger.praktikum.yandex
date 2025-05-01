@@ -1,20 +1,20 @@
 import type { TValidationRule } from '../../../types'
 import Block from '../../../core/block.ts'
-import { DsForm } from '../../../components/design-system/DsForm'
-import { DsInputField } from '../../../components/design-system/DsInput'
+import { DsForm, DsButton, DsInputField } from '../../../components'
+import { PAGES } from '../../../constants'
 import { RULE_LOGIN, RULE_PASSWORD } from '../../../utils/validationRules.ts'
 import {
   handleFieldChange,
   handleFormSubmit,
 } from '../../../components/design-system/DsForm/handlers.ts'
-import { DsButton } from '../../../components'
 
-type TLoginFormState = {
-  [key in 'login' | 'password']: {
+type TLoginFormState = Record<
+  'login' | 'password',
+  {
     value: string
     rules: TValidationRule[]
   }
-}
+>
 
 export default class LoginPage extends Block {
   constructor() {
@@ -46,15 +46,14 @@ export default class LoginPage extends Block {
             placeholder: '',
             autocomplete: 'login',
             name: 'login',
-            onBlur: (event: Event) => {
+            onBlur: (event: Event) =>
               handleFieldChange(
                 event,
                 'login',
                 this.props.formState as TLoginFormState,
                 (newState) => this.setProps({ formState: newState }),
                 this.children.AuthForm as DsForm,
-              )
-            },
+              ),
           }),
           new DsInputField({
             label: 'Пароль',
@@ -62,15 +61,14 @@ export default class LoginPage extends Block {
             placeholder: '',
             name: 'password',
             autocomplete: 'password',
-            onBlur: (event: Event) => {
+            onBlur: (event: Event) =>
               handleFieldChange(
                 event,
                 'password',
                 this.props.formState as TLoginFormState,
                 (newState) => this.setProps({ formState: newState }),
                 this.children.AuthForm as DsForm,
-              )
-            },
+              ),
           }),
         ],
         controls: [
@@ -78,22 +76,21 @@ export default class LoginPage extends Block {
             content: 'Авторизоваться',
             type: 'primary',
             nativeType: 'submit',
+            className: 'ds-button_submit',
           }),
           new DsButton({
             content: 'Нет аккаунта?',
             type: 'link',
-            dataPage: 'nav',
+            dataPage: PAGES.REGISTER,
           }),
         ],
-        onSubmit: (event: Event) => {
-          event.preventDefault()
-          return handleFormSubmit(
+        onSubmit: (event: Event) =>
+          handleFormSubmit(
             event,
             this.props.formState as TLoginFormState,
             (errors) => this.setProps({ errors }),
             this.children.AuthForm as DsForm,
-          )
-        },
+          ),
       }),
     })
   }

@@ -60,7 +60,7 @@ export default abstract class Block<
 
   private _registerLifecycleEvents(eventBus: TEventBus) {
     eventBus.on(LIFECYCLE_EVENTS.INIT, this.init.bind(this))
-    // TODO не придумал как дотипизировать
+    // TODO не придумал как дотипизировать без `any` у `TCallback`
     eventBus.on(LIFECYCLE_EVENTS.FLOW_CDM, this._componentDidMount.bind(this))
     eventBus.on(LIFECYCLE_EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this))
     eventBus.on(LIFECYCLE_EVENTS.FLOW_RENDER, this._render.bind(this))
@@ -249,8 +249,8 @@ export default abstract class Block<
     return true
   }
 
-  show() {
-    this.getContent().style.display = 'block'
+  show(display: string) {
+    this.getContent().style.display = display || 'block'
   }
 
   hide() {

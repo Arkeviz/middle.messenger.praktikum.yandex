@@ -34,6 +34,23 @@ type TFormStateWithPasswords = {
 export const RULE_REPEAT_PASSWORD: TValidationRule = {
   message: 'Пароли не совпадают',
   validator: (formState: TFormStateWithPasswords, value) => {
-    return value !== formState.password.value
+    return value === formState?.password?.value
+  },
+}
+
+/** Правило валидации полей ФИО */
+export const RULE_FIO: TValidationRule = {
+  message:
+    'Разрешены только буквы кириллицы или латиницы, первая буква — заглавная, допускается дефис, без пробелов и цифр',
+  validator: (_, value) => {
+    return /^[A-ZА-ЯЁ][a-zа-яёA-ZА-ЯЁ-]*$/.test(value)
+  },
+}
+
+export const RULE_PHONE: TValidationRule = {
+  message:
+    'Телефон должен содержать только цифры, может начинаться с +, длина от 10 до 15 символов',
+  validator: (_, value) => {
+    return /^\+?\d{10,15}$/.test(value)
   },
 }

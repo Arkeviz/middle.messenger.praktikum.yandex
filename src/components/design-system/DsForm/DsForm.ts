@@ -2,9 +2,13 @@ import type { IBaseBlockProps } from '../../../types'
 import Block from '../../../core/block.ts'
 
 interface IFormProps extends IBaseBlockProps {
+  /** Текст заголовка формы */
   title?: string
+  /** Поля формы */
   fields?: Block[]
+  /** Кнопки внизу формы */
   controls?: Block[]
+  /** Класс для заголовка формы */
   headingClass?: string
   onSubmit?: (event: Event) => boolean | void
   onClick?: () => void
@@ -27,7 +31,6 @@ export default class DsForm extends Block<IFormProps> {
   }
 
   render(): string {
-    // TODO {{formClass}} убрать на логине и регистрации
     return `
       ${this.props.title ? '<h2 class="ds-form__title {{headingClass}}">{{title}}</h2>' : ''}
       {{#each fields}}

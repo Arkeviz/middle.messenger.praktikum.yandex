@@ -30,7 +30,8 @@
   }
 
   &__input:focus + &__label,
-  &__input:not(:placeholder-shown) + &__label{
+  &__input:placeholder-shown + &__label,
+  &__input_filled + &__label {
     transform: translateY(-100%) scale(0.75);
   }
 

@@ -16,15 +16,3 @@ export type TValidationRule = {
   message: string
   validator: (formState: TFormState, value: string) => boolean
 }
-
-export type TInputField =
-  | 'email'
-  | 'login'
-  | 'password'
-  | 'password_repeat'
-  | 'first_name'
-  | 'second_name'
-  | 'username'
-  | 'phone'
-  | 'password_old'
-  | 'message'
