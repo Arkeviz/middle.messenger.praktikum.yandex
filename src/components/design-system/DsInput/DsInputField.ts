@@ -4,13 +4,13 @@ import { DsInput } from './index'
 
 interface IDsInputFieldProps extends IBaseBlockProps {
   label?: string
-  title?: string
   type?: string
   placeholder?: string
   autocomplete?: string
   name?: string
   value?: string
-  children?: Record<'DsInput', DsInput>
+  disabled?: boolean
+  inputClass?: string
 
   error?: string
 
@@ -25,7 +25,7 @@ interface IDsInputFieldProps extends IBaseBlockProps {
  * для корректной работы перемещения `ds-input__label`
  * @param event
  */
-const toggleInputClassModifier = (event: Event) => {
+const toggleFilledClass = (event: Event) => {
   const target: HTMLInputElement = event.target as HTMLInputElement
 
   if (target?.value) target?.classList.add('ds-input__input_filled')
@@ -38,15 +38,22 @@ export default class DsInputField extends Block<IDsInputFieldProps> {
       ...(props.onInput && { input: props.onInput }),
       ...(props.onChange && { change: props.onChange }),
       ...(props.onBlur && { blur: props.onBlur }),
-      focusout: toggleInputClassModifier,
+      focusout: toggleFilledClass,
     }
+
+    const className = props.className ? ' ' + props.className : ''
+    const inputClass = props.inputClass ? ' ' + props.inputClass : ''
+
     super('div', {
       ...props,
-      className: 'ds-input' + (props.className ?? ''),
+      className: 'ds-input' + className,
       DsInput: new DsInput({
-        autocomplete: props.autocomplete,
+        className: inputClass,
+        ...(props.autocomplete && { autocomplete: props.autocomplete }),
+        ...(props.value && { value: props.value }),
         ...(props.type && { type: props.type }),
         ...(props.name && { name: props.name }),
+        ...(props.disabled && { disabled: props.disabled }),
         ...(props.placeholder && { placeholder: props.placeholder }),
         events,
       }),

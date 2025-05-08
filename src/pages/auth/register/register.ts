@@ -8,7 +8,7 @@ import {
   RULE_LOGIN,
   RULE_PASSWORD,
   RULE_PHONE,
-  RULE_REPEAT_PASSWORD,
+  RULE_PASSWORD_REPEAT,
 } from '../../../utils/validationRules.ts'
 import {
   handleFieldChange,
@@ -54,7 +54,7 @@ export default class RegisterPage extends Block {
         },
         password_repeat: {
           value: '',
-          rules: [RULE_REPEAT_PASSWORD],
+          rules: [RULE_PASSWORD_REPEAT],
         },
       },
       errors: {
@@ -91,7 +91,7 @@ export default class RegisterPage extends Block {
             label: 'Логин',
             type: 'text',
             placeholder: 'ivanivanov',
-            autocomplete: 'login',
+            autocomplete: 'username',
             name: 'login',
             onBlur: (event: Event) => {
               handleFieldChange(
@@ -107,7 +107,7 @@ export default class RegisterPage extends Block {
             label: 'Имя',
             type: 'text',
             placeholder: 'Иван',
-            autocomplete: 'first_name',
+            autocomplete: 'given-name',
             name: 'first_name',
             onBlur: (event: Event) => {
               handleFieldChange(
@@ -123,7 +123,7 @@ export default class RegisterPage extends Block {
             label: 'Фамилия',
             type: 'text',
             placeholder: 'Иванов',
-            autocomplete: 'second_name',
+            autocomplete: 'family-name',
             name: 'second_name',
             onBlur: (event: Event) => {
               handleFieldChange(
@@ -139,7 +139,7 @@ export default class RegisterPage extends Block {
             label: 'Телефон',
             type: 'tel',
             placeholder: '+7 (909) 967 30 30',
-            autocomplete: 'phone',
+            autocomplete: 'tel',
             name: 'phone',
             onBlur: (event: Event) => {
               handleFieldChange(

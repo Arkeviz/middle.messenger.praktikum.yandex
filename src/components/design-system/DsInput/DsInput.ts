@@ -7,6 +7,7 @@ interface IInputProps extends IBaseBlockProps {
   autocomplete?: string
   name?: string
   value?: string
+  disabled?: boolean
   events?: {
     [key: string]: (event: Event) => void
   }
@@ -24,6 +25,7 @@ export default class DsInput extends Block<IInputProps> {
         autocomplete: props.autocomplete ?? 'off',
         ...(props.placeholder && { placeholder: props.placeholder }),
         ...(props.name && { name: props.name }),
+        ...(props.disabled && { disabled: props.disabled }),
         ...(props.value && { value: props.value }),
       },
     })

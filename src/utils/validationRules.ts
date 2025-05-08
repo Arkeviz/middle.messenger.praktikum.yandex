@@ -31,10 +31,12 @@ export const RULE_PASSWORD: TValidationRule = {
 type TFormStateWithPasswords = {
   [key in 'password' | 'password_repeat' | string]: TFormField
 }
-export const RULE_REPEAT_PASSWORD: TValidationRule = {
+export const RULE_PASSWORD_REPEAT: TValidationRule = {
   message: 'Пароли не совпадают',
   validator: (formState: TFormStateWithPasswords, value) => {
-    return value === formState?.password?.value
+    return (
+      value === (formState?.password?.value ?? formState?.newPassword?.value)
+    )
   },
 }
 

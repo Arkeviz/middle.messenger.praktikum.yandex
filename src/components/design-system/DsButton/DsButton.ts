@@ -3,25 +3,36 @@ import Block from '../../../core/block.ts'
 import { PAGES } from '../../../constants'
 import { DsIcon } from '../DsIcon'
 
-interface IDsButtonProps extends IBaseBlockProps {
+interface IBaseButtonProps extends IBaseBlockProps {
   nativeType?: HTMLButtonElement['type']
   type?: 'primary' | 'link' | 'icon'
   /** Текст кнопки */
   content?: string | Block
   iconName?: string
+  iconClass?: string
   disabled?: boolean
   /** Страница, на которую перекидывает кнопка */
   dataPage?: PAGES
   onClick?: (event: Event) => void
 }
 
-export default class DsButton extends Block<IDsButtonProps> {
-  constructor(props: IDsButtonProps) {
-    const buttonClass = ` ds-button__${props.type} `
+/** Частный случай конпки-иконки */
+interface IDsButtonIconProps extends IBaseButtonProps {
+  type: 'icon'
+  iconName: string
+  content?: never
+}
+
+type TDsButtonProps = IBaseButtonProps | IDsButtonIconProps
+
+export default class DsButton extends Block<TDsButtonProps> {
+  constructor(props: TDsButtonProps) {
+    const buttonClass = ` ds-button__${props.type}`
+    const className = props.className ? ' ' + props.className : ''
 
     const attrs: Record<string, string> = {
       type: props.nativeType ?? 'button',
-      ...(props.disabled && { disabled: true }),
+      ...(props.disabled && { disabled: 'true' }),
       ...(props.dataPage && { 'data-page': props.dataPage }),
     }
 
@@ -30,13 +41,14 @@ export default class DsButton extends Block<IDsButtonProps> {
     super('button', {
       ...props,
       attrs,
-      className: (
-        'ds-button' +
-        buttonClass +
-        (props.className ?? '')
-      ).trimEnd(),
+      className: 'ds-button' + buttonClass + className,
 
-      ...(isButtonIcon && { DsIcon: new DsIcon({ name: props.iconName }) }),
+      ...(isButtonIcon && {
+        Icon: new DsIcon({
+          name: props.iconName as string,
+          className: props.iconClass ?? '',
+        }),
+      }),
 
       events: {
         click: (event: Event) => {
@@ -51,7 +63,7 @@ export default class DsButton extends Block<IDsButtonProps> {
   render(): string {
     const isIcon = this.props.type === 'icon'
     if (isIcon) {
-      return `{{{DsIcon}}}`
+      return `{{{Icon}}}`
     } else {
       return `{{{content}}}`
     }
