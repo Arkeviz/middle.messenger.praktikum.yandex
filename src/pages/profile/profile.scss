@@ -1,6 +1,42 @@
 @use 'sass:color';
 
+.profile-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
 .profile {
+  &__sidebar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 100%;
+    background-color: $sidebar-bg;
+    border-right: 1px solid $border-base;
+
+    .ds-button {
+      width: 28px;
+      height: 28px;
+      padding: 0;
+    }
+  }
+
+  &__icon {
+    color: #FFF;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
   &__avatar {
     position: relative;
     display: flex;
@@ -63,6 +99,10 @@
     line-height: 16px;
     text-align: center;
     margin: 21px 0 60px;
+
+    &_hidden {
+      visibility: hidden;
+    }
   }
 
   &__data, &__actions {
@@ -102,6 +142,9 @@
   }
 
   &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
     .ds-button__link {
       height: fit-content;
       font-size: 13px;
@@ -119,5 +162,37 @@
         }
       }
     }
+  }
+}
+
+.profile-change {
+  &__data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+    width: 100%;
+    max-width: 510px;
+    min-height: 204px;
+  }
+
+  &__password {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 510px;
+    margin-top: 97px;
+    min-height: 204px;
+
+    .profile-input {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__save-button {
+    margin-top: 60px;
+    font-size: 13px;
+    width: 280px;
   }
 }

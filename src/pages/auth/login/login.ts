@@ -19,7 +19,6 @@ type TLoginFormState = Record<
 export default class LoginPage extends Block {
   constructor() {
     super('main', {
-      title: 'Вход',
       className: 'auth-container',
       formState: {
         login: {
@@ -44,7 +43,7 @@ export default class LoginPage extends Block {
             label: 'Логин',
             type: 'text',
             placeholder: '',
-            autocomplete: 'login',
+            autocomplete: 'username',
             name: 'login',
             onBlur: (event: Event) =>
               handleFieldChange(
