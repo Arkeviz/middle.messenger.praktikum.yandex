@@ -182,17 +182,25 @@
     align-items: center;
     width: 100%;
     max-width: 510px;
-    margin-top: 97px;
     min-height: 204px;
-
-    .profile-input {
-      margin-bottom: 10px;
-    }
   }
 
   &__save-button {
     margin-top: 60px;
     font-size: 13px;
     width: 280px;
+  }
+}
+
+.avatar-upload {
+
+  &__dialog {}
+  &__confirm-button {
+    margin-top: 60px;
+    font-size: 13px;
+    width: 280px;
+  }
+  &__body {
+    padding-bottom: 0;
   }
 }

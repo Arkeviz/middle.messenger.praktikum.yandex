@@ -15,7 +15,9 @@ export const handleFieldChange = (
 
   const { rules } = formState[field]
 
-  const checks = rules.map((rule) => validateField(value, rule, formState))
+  const checks = rules.map((rule) =>
+    validateField(rule, formState, event.target as HTMLInputElement, value),
+  )
   const firstError = checks.find((c) => !!c) ?? ''
 
   const fields: DsInputField | DsInputField[] = form.getChildren()?.fields || []
@@ -45,7 +47,7 @@ export const handleFormSubmit = (
   updateErrors: (errors: Record<string, string>) => void,
   form: DsForm,
 ) => {
-  const { hasErrors, errors } = validateForm(formState)
+  const { hasErrors, errors } = validateForm(formState, form)
   updateErrors(errors)
 
   const fields = (form.getChildren()?.fields as Block[]) || []

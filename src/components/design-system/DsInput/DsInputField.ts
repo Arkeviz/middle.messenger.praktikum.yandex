@@ -34,10 +34,30 @@ const toggleFilledClass = (event: Event) => {
 
 export default class DsInputField extends Block<IDsInputFieldProps> {
   constructor(props: IDsInputFieldProps) {
+    const isInputFile = props.type === 'file'
+
     const events = {
       ...(props.onInput && { input: props.onInput }),
-      ...(props.onChange && { change: props.onChange }),
       ...(props.onBlur && { blur: props.onBlur }),
+      change: (event: Event) => {
+        props?.onChange?.(event)
+
+        // Если инпут с типом `file` - заменяем текст на название файла
+        if (isInputFile) {
+          const input = this.element.querySelector(
+            '.ds-input__input',
+          ) as HTMLInputElement
+          const label = this.element.querySelector('.ds-input-file__text')
+
+          const fileName =
+            input!.files!.length > 0
+              ? input!.files![0].name
+              : 'Выбрать файл на компьютере'
+          label!.innerHTML = fileName
+
+          label?.classList.add('ds-input-file__text_uploaded')
+        }
+      },
       focusout: toggleFilledClass,
     }
 
@@ -60,12 +80,31 @@ export default class DsInputField extends Block<IDsInputFieldProps> {
     })
   }
 
+  resetInput() {
+    const input = this.element.querySelector(
+      '.ds-input__input',
+    ) as HTMLInputElement
+    const label = this.element.querySelector('.ds-input-file__text')
+
+    input.value = null
+    label!.innerHTML = 'Выбрать файл на компьютере'
+    label?.classList.remove('ds-input-file__text_uploaded')
+  }
+
   render(): string {
-    // TODO пофиксить стили связанные с `labelClass у диалогов`
-    return `
-      {{{DsInput}}}
-      <label class="ds-input__label">{{label}}</label>
-      <p class="ds-input__validation-label">{{error}}</p>
-    `
+    const isInputFile = this.props.type === 'file'
+
+    return isInputFile
+      ? `
+          <label class="ds-input-file">
+            {{{DsInput}}}
+            <span class="ds-input-file__text">Выбрать файл на компьютере</span>
+          </label>
+        `
+      : `
+          {{{DsInput}}}
+          <label class="ds-input__label">{{label}}</label>
+          <p class="ds-input__validation-label">{{error}}</p>
+        `
   }
 }

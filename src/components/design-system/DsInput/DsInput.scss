@@ -19,6 +19,24 @@
     }
   }
 
+  &-file {
+    cursor: pointer;
+
+    &__text {
+      color: $base-color;
+      text-decoration: underline;
+
+      &_uploaded {
+        color: #8D8D8D;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &__input[type="file"] {
+    display: none;
+  }
+
   &__label {
     position: absolute;
     top: 0;

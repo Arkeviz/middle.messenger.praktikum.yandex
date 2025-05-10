@@ -14,5 +14,9 @@ export type TFormState = Record<string, TFormField>
 
 export type TValidationRule = {
   message: string
-  validator: (formState: TFormState, value: string) => boolean
+  validator: (
+    value: string,
+    formState: TFormState,
+    input: HTMLInputElement,
+  ) => boolean
 }

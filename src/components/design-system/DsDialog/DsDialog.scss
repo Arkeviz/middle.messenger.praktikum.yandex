@@ -1,4 +1,5 @@
-.ds-dialog-overlay {
+.ds-dialog__overlay {
+  display: none;
   position: fixed;
   z-index: 8000;
   inset: 0;

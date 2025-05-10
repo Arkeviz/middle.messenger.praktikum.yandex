@@ -249,10 +249,14 @@ export default abstract class Block<
     return true
   }
 
-  show(display: string) {
-    this.getContent().style.display = display || 'block'
+  /** Возвращает элемент
+   * @param {string} [display='block'] стиль `display`
+   */
+  show(display: string = 'block') {
+    this.getContent().style.display = display
   }
 
+  /** Скрывает элемент (`display: none;`) */
   hide() {
     this.getContent().style.display = 'none'
   }

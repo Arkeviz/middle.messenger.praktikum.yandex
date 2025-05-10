@@ -1,18 +1,30 @@
 import type { TFormState, TValidationRule } from '../types'
+import { DsForm } from '../components'
+import Block from '../core/block.ts'
 
 export const validateField = (
-  value: string,
   rule: TValidationRule,
   formState: TFormState,
-): string => (rule.validator(formState, value) ? '' : rule.message)
+  input: HTMLInputElement,
+  value: string,
+): string => (rule.validator(value, formState, input) ? '' : rule.message)
 
-export const validateForm = (formState: TFormState) => {
+export const validateForm = (formState: TFormState, form: DsForm) => {
   let hasErrors = false
   const errors: Record<string, string> = {}
 
+  const fields = (form.getChildren()?.fields as Block[]) || []
   Object.keys(formState).forEach((field) => {
     const { rules, value } = formState[field]
-    const checks = rules.map((rule) => validateField(value, rule, formState))
+
+    const inputField = fields.find(
+      (input) => 'props' in input && input.props?.name === field,
+    )
+    const input = inputField?.element.querySelector('input')
+
+    const checks = rules.map((rule) =>
+      validateField(rule, formState, input as HTMLInputElement, value),
+    )
     // Записываем только сообщение о первой ошибке
     const firstError = checks.find((c) => !!c) ?? ''
     errors[field] = firstError

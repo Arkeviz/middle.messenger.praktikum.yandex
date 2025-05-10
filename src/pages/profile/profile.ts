@@ -7,8 +7,16 @@ import {
   RULE_PASSWORD_REPEAT,
   RULE_PHONE,
   RULE_REQUIRED,
+  RULE_REQUIRED_FILE,
 } from '../../utils/validationRules.ts'
-import { DsButton, DsForm, DsIcon, ProfileInput } from '../../components'
+import {
+  DsButton,
+  DsDialog,
+  DsForm,
+  DsIcon,
+  DsInputField,
+  ProfileInput,
+} from '../../components'
 import { PAGES } from '../../constants'
 import {
   handleFieldChange,
@@ -35,6 +43,14 @@ type TChangePasswordFormState = Record<
   }
 >
 
+type TChangeAvatarFormState = Record<
+  'file',
+  {
+    value: string
+    rules: TValidationRule[]
+  }
+>
+
 export default class ProfilePage extends Block {
   constructor() {
     const formsRules: Record<string, TValidationRule[]> = {
@@ -50,10 +66,8 @@ export default class ProfilePage extends Block {
       newPasswordRepeat: [RULE_PASSWORD_REPEAT],
     }
 
-    const profileFormState: Record<
-      string,
-      { value: string; rules: TValidationRule[] }
-    > = {}
+    const profileFormState: TChangeProfileFormState =
+      {} as TChangeProfileFormState
     const profileErrors: Record<string, string> = {}
 
     // Заполняем стейт и ошибки формы изменения данных профиля
@@ -105,10 +119,8 @@ export default class ProfilePage extends Block {
         ),
     })
 
-    const passwordFormState: Record<
-      string,
-      { value: string; rules: TValidationRule[] }
-    > = {}
+    const passwordFormState: TChangePasswordFormState =
+      {} as TChangePasswordFormState
     const passwordErrors: Record<string, string> = {}
 
     // Заполняем стейт и ошибки формы смены пароля
@@ -160,6 +172,77 @@ export default class ProfilePage extends Block {
         ),
     })
 
+    const uploadAvatarFormState = {
+      file: {
+        value: null,
+        rules: [RULE_REQUIRED_FILE],
+      },
+    }
+    const uploadAvatarErrors = {
+      file: '',
+    }
+
+    const uploadAvatarForm = new DsForm({
+      className: 'profile-upload-avatar',
+      fields: [
+        new DsInputField({
+          className: 'ds-input__file-input',
+          label: 'Выбрать файл на компьютере',
+          type: 'file',
+          name: 'file',
+          onBlur: (event: Event) => {
+            handleFieldChange(
+              event,
+              'file',
+              this.props.uploadAvatarFormState as TChangeAvatarFormState,
+              (newState) => this.setProps({ uploadAvatarFormState: newState }),
+              this.children.uploadAvatarForm as DsForm,
+            )
+          },
+        }),
+      ],
+      controls: [
+        new DsButton({
+          className: 'avatar-upload__confirm-button',
+          content: 'Поменять',
+          type: 'primary',
+          nativeType: 'submit',
+        }),
+      ],
+      onSubmit: (event: Event) => {
+        const isSuccess = handleFormSubmit(
+          event,
+          this.props.uploadAvatarFormState as TChangeAvatarFormState,
+          (uploadAvatarErrors) => this.setProps({ uploadAvatarErrors }),
+          this.children.uploadAvatarForm as DsForm,
+        )
+
+        if (!isSuccess) {
+          this.children.uploadAvatarDialog.setProps({
+            isError: true,
+            title: 'Ошибка, попробуйте ещё раз',
+            footerContent: `<p class="ds-dialog__confirm-error">Нужно выбрать файл</p>`,
+          })
+        } else {
+          this.children.uploadAvatarDialog.setProps({
+            isError: false,
+            title: 'Успешно!',
+            footerContent: '',
+          })
+        }
+      },
+    })
+
+    const uploadAvatarDialog = new DsDialog({
+      className: 'avatar-upload-dialog',
+      title: 'Загрузите файл',
+      content: uploadAvatarForm,
+      bodyClass: 'avatar-upload__body',
+      onClose: () => {
+        this.children.uploadAvatarForm.children.fields[0]?.resetInput?.()
+      },
+    })
+
     super('div', {
       className: 'profile profile-container',
       user: { ...mockUserData },
@@ -178,11 +261,11 @@ export default class ProfilePage extends Block {
         type: 'link',
         dataPage: PAGES.LOGIN,
       }),
-      Avatar: new DsIcon({
+      avatarStub: new DsIcon({
         className: 'profile__avatar-stub',
         name: 'profile-image-stub',
       }),
-      BackButton: new DsButton({
+      backButton: new DsButton({
         type: 'icon',
         iconName: 'arrow-left',
         iconClass: 'profile__icon',
@@ -203,6 +286,11 @@ export default class ProfilePage extends Block {
       passwordFormState,
       passwordErrors,
       changePasswordForm,
+
+      uploadAvatarFormState,
+      uploadAvatarErrors,
+      uploadAvatarForm,
+      uploadAvatarDialog,
     })
   }
 
@@ -212,15 +300,15 @@ export default class ProfilePage extends Block {
 
     return `
       <nav class="profile__sidebar">
-        {{{BackButton}}}
+        {{{backButton}}}
       </nav>
 
       <main class="profile__content">
-        <button class="profile__avatar">
+        <button type="button" class="profile__avatar">
         ${
           user?.avatar
             ? `<img class="profile__avatar-image" src="${user.avatar}" alt="Ваш аватар">`
-            : `{{{Avatar}}}`
+            : `{{{avatarStub}}}`
         }
           <span class="profile__avatar-change-text">Поменять<br>аватар</span>
         </button>
@@ -251,6 +339,7 @@ export default class ProfilePage extends Block {
                 : ''
         }
       </main>
+      {{{uploadAvatarDialog}}}
     `
   }
 
@@ -266,5 +355,15 @@ export default class ProfilePage extends Block {
       `,
       )
       .join('')
+  }
+
+  componentDidMount() {
+    const avatarButton = this.element.querySelector('.profile__avatar')
+    if (avatarButton) {
+      avatarButton.addEventListener('click', () => {
+        this.children?.uploadAvatarDialog?.openDialog?.()
+      })
+    }
+    return true
   }
 }
