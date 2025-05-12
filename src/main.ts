@@ -12,6 +12,8 @@ const pages = {
   [PAGES.REGISTER]: Pages.RegisterPage,
   [PAGES.PROFILE]: Pages.ProfilePage,
   [PAGES.CHATS]: Pages.ChatPage,
+  [PAGES.ERROR_404]: Pages.ErrPage404,
+  [PAGES.ERROR_500]: Pages.ErrPage500,
 }
 
 type TPageKey = keyof typeof pages
