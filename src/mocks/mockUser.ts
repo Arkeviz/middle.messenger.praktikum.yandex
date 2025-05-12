@@ -1,4 +1,4 @@
-import { TUser } from '../../types/user.ts'
+import { TUser } from '../types/user.ts'
 
 export const mockUserData: TUser = {
   avatar: '/kad-avatar.jpg',

@@ -2,10 +2,7 @@ import './assets/scss/normalize.css'
 import './assets/fonts/fonts.scss'
 import './assets/scss/main.scss'
 
-import Handlebars from 'handlebars'
 import { PAGES } from './constants'
-import * as Components from './components'
-import * as Layouts from './layouts'
 import * as Pages from './pages'
 import renderApp from './core/renderApp.ts'
 
@@ -14,6 +11,7 @@ const pages = {
   [PAGES.NAV]: Pages.NavPage,
   [PAGES.REGISTER]: Pages.RegisterPage,
   [PAGES.PROFILE]: Pages.ProfilePage,
+  [PAGES.CHATS]: Pages.ChatPage,
 }
 
 type TPageKey = keyof typeof pages

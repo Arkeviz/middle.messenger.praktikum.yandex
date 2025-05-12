@@ -82,7 +82,7 @@ export default class RegisterPage extends Block {
                 event,
                 'email',
                 this.props.formState as TRegisterFormState,
-                (newState) => this.setProps({ formState: newState }),
+                (newState) => (this.props.formState = newState),
                 this.children.AuthForm as DsForm,
               )
             },
@@ -98,7 +98,7 @@ export default class RegisterPage extends Block {
                 event,
                 'login',
                 this.props.formState as TRegisterFormState,
-                (newState) => this.setProps({ formState: newState }),
+                (newState) => (this.props.formState = newState),
                 this.children.AuthForm as DsForm,
               )
             },
@@ -114,7 +114,7 @@ export default class RegisterPage extends Block {
                 event,
                 'first_name',
                 this.props.formState as TRegisterFormState,
-                (newState) => this.setProps({ formState: newState }),
+                (newState) => (this.props.formState = newState),
                 this.children.AuthForm as DsForm,
               )
             },
@@ -130,7 +130,7 @@ export default class RegisterPage extends Block {
                 event,
                 'second_name',
                 this.props.formState as TRegisterFormState,
-                (newState) => this.setProps({ formState: newState }),
+                (newState) => (this.props.formState = newState),
                 this.children.AuthForm as DsForm,
               )
             },
@@ -146,7 +146,7 @@ export default class RegisterPage extends Block {
                 event,
                 'phone',
                 this.props.formState as TRegisterFormState,
-                (newState) => this.setProps({ formState: newState }),
+                (newState) => (this.props.formState = newState),
                 this.children.AuthForm as DsForm,
               )
             },
@@ -162,7 +162,7 @@ export default class RegisterPage extends Block {
                 event,
                 'password',
                 this.props.formState as TRegisterFormState,
-                (newState) => this.setProps({ formState: newState }),
+                (newState) => (this.props.formState = newState),
                 this.children.AuthForm as DsForm,
               )
             },
@@ -178,7 +178,7 @@ export default class RegisterPage extends Block {
                 event,
                 'password_repeat',
                 this.props.formState as TRegisterFormState,
-                (newState) => this.setProps({ formState: newState }),
+                (newState) => (this.props.formState = newState),
                 this.children.AuthForm as DsForm,
               )
             },

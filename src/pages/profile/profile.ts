@@ -1,3 +1,5 @@
+import type { TValidationRule } from '../../types'
+import type { TUser } from '../../types/user.ts'
 import Block from '../../core/block.ts'
 import {
   RULE_EMAIL,
@@ -9,6 +11,7 @@ import {
   RULE_REQUIRED,
   RULE_REQUIRED_FILE,
 } from '../../utils/validationRules.ts'
+import { PAGES } from '../../constants'
 import {
   DsButton,
   DsDialog,
@@ -17,14 +20,11 @@ import {
   DsInputField,
   ProfileInput,
 } from '../../components'
-import { PAGES } from '../../constants'
 import {
   handleFieldChange,
   handleFormSubmit,
 } from '../../components/design-system/DsForm/handlers.ts'
-import type { TValidationRule } from '../../types'
-import { TUser } from '../../types/user.ts'
-import { mockUserData } from './mockUser.ts'
+import { mockUserData } from '../../mocks/mockUser.ts'
 import { navigate } from '../../main.ts'
 
 type TChangeProfileFormState = Record<
@@ -96,7 +96,7 @@ export default class ProfilePage extends Block {
                 event,
                 field.name,
                 this.props.profileFormState as TChangeProfileFormState,
-                (newState) => this.setProps({ profileFormState: newState }),
+                (newState) => (this.props.profileFormState = newState),
                 this.children.changeProfileForm as DsForm,
               )
             },
@@ -149,7 +149,7 @@ export default class ProfilePage extends Block {
                 event,
                 field.name,
                 this.props.passwordFormState as TChangeProfileFormState,
-                (newState) => this.setProps({ passwordFormState: newState }),
+                (newState) => (this.props.passwordFormState = newState),
                 this.children.changePasswordForm as DsForm,
               )
             },
@@ -195,7 +195,7 @@ export default class ProfilePage extends Block {
               event,
               'file',
               this.props.uploadAvatarFormState as TChangeAvatarFormState,
-              (newState) => this.setProps({ uploadAvatarFormState: newState }),
+              (newState) => (this.props.uploadAvatarFormState = newState),
               this.children.uploadAvatarForm as DsForm,
             )
           },
@@ -249,12 +249,12 @@ export default class ProfilePage extends Block {
       editProfileButton: new DsButton({
         content: 'Изменить данные',
         type: 'link',
-        onClick: () => this.setProps({ isEditProfile: true }),
+        onClick: () => (this.props.isEditProfile = true),
       }),
       editPasswordButton: new DsButton({
         content: 'Изменить пароль',
         type: 'link',
-        onClick: () => this.setProps({ isEditPassword: true }),
+        onClick: () => (this.props.isEditPassword = true),
       }),
       logoutButton: new DsButton({
         content: 'Выйти',
@@ -271,11 +271,11 @@ export default class ProfilePage extends Block {
         iconClass: 'profile__icon',
         onClick: () => {
           if (this.props.isEditProfile) {
-            this.setProps({ isEditProfile: false })
+            this.props.isEditProfile = false
           } else if (this.props.isEditPassword) {
-            this.setProps({ isEditPassword: false })
+            this.props.isEditPassword = false
           } else {
-            navigate(PAGES.NAV)
+            navigate(PAGES.CHATS)
           }
         },
       }),

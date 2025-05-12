@@ -1,3 +1,2 @@
-export { EmptyChatPage } from './empty-page'
-export { CurrentChatPage } from './current-chat'
-export { ChatSearchResultsPage } from './search-results'
+import './chat.scss'
+export { default as ChatPage } from './chat.ts'

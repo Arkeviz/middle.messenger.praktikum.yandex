@@ -20,7 +20,8 @@ export const handleFieldChange = (
   )
   const firstError = checks.find((c) => !!c) ?? ''
 
-  const fields: DsInputField | DsInputField[] = form.getChildren()?.fields || []
+  const fields: DsInputField | DsInputField[] =
+    (form.getChildren()?.fields as DsInputField[]) || []
 
   if (Array.isArray(fields)) {
     const inputField = fields.find((input) => {

@@ -86,9 +86,11 @@ export default class DsInputField extends Block<IDsInputFieldProps> {
     ) as HTMLInputElement
     const label = this.element.querySelector('.ds-input-file__text')
 
-    input.value = null
-    label!.innerHTML = 'Выбрать файл на компьютере'
-    label?.classList.remove('ds-input-file__text_uploaded')
+    input.value = ''
+    if (input.type === 'file') {
+      label!.innerHTML = 'Выбрать файл на компьютере'
+      label?.classList.remove('ds-input-file__text_uploaded')
+    }
   }
 
   render(): string {

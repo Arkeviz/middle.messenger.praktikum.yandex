@@ -6,8 +6,12 @@ import { DsIcon } from '../DsIcon'
 interface IBaseButtonProps extends IBaseBlockProps {
   nativeType?: HTMLButtonElement['type']
   type?: 'primary' | 'link' | 'icon'
-  /** Текст кнопки */
-  content?: string | Block
+  /** Основной контент кнопки */
+  content?: string | Block<any>
+  /** Контент ДО основного */
+  prepend?: string | Block<any>
+  /** Контент ПОСЛЕ основного */
+  append?: string | Block<any>
   iconName?: string
   iconClass?: string
   disabled?: boolean
@@ -65,7 +69,11 @@ export default class DsButton extends Block<TDsButtonProps> {
     if (isIcon) {
       return `{{{Icon}}}`
     } else {
-      return `{{{content}}}`
+      return `
+        {{{prepend}}}
+        {{{content}}}
+        {{{append}}}
+      `
     }
   }
 }

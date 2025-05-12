@@ -155,7 +155,7 @@ export default abstract class Block<
     })
   }
 
-  setProps = (nextProps: TProps) => {
+  setProps = (nextProps: Partial<TProps>) => {
     if (!nextProps) {
       return
     }
