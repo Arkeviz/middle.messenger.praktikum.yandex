@@ -1,4 +1,4 @@
-import './assets/scss/normalize.css'
+import './assets/scss/normalize.scss'
 import './assets/fonts/fonts.scss'
 import './assets/scss/main.scss'
 
