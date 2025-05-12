@@ -28,7 +28,7 @@ export function navigate(page: TPageKey) {
   console.error(`Страница «${page}» не найдена`)
 }
 
-document.addEventListener('DOMContentLoaded', () => navigate('nav'))
+document.addEventListener('DOMContentLoaded', () => navigate(PAGES.NAV))
 
 document.addEventListener('click', (e) => {
   const target = e.target as HTMLElement

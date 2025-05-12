@@ -17,8 +17,8 @@ interface IChatSidebarProps extends IBaseBlockProps {
 export default class ChatSidebar extends Block<IChatSidebarProps> {
   constructor(props: IChatSidebarProps) {
     const searchChats = (event: Event) => {
-      if (event?.target?.value === '') {
-        this.children.ChatList.setProps({
+      if ((event?.target as HTMLInputElement)?.value === '') {
+        ;(this.children.ChatList as ChatsList).setProps({
           chats: this.props.chats,
           isSearchResults: false,
         })
@@ -29,8 +29,7 @@ export default class ChatSidebar extends Block<IChatSidebarProps> {
       const filteredChats = this.props.chats?.filter((chat) =>
         chat.title.toLowerCase().includes(searchStr.toLowerCase()),
       )
-
-      this.children.ChatList.setProps({
+      ;(this.children.ChatList as ChatsList).setProps({
         chats: filteredChats,
         isSearchResults: true,
       })

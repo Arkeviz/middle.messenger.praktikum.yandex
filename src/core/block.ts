@@ -229,6 +229,7 @@ export default abstract class Block<
     })
   }
 
+  // @ts-ignore
   componentDidMount(oldProps: TProps) {
     return true
   }
@@ -238,13 +239,12 @@ export default abstract class Block<
   }
 
   private _componentDidUpdate(oldProps: TProps, newProps: TProps) {
-    const response = this.componentDidUpdate(oldProps, newProps)
-    if (!response) {
-      return
-    }
     this._render()
+    const response = this.componentDidUpdate(oldProps, newProps)
+    return response
   }
 
+  // @ts-ignore
   componentDidUpdate(oldProps: TProps, newProps: TProps) {
     return true
   }

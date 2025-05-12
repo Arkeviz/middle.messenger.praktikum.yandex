@@ -43,7 +43,6 @@ export const handleFieldChange = (
 }
 
 export const handleFormSubmit = (
-  event: Event,
   formState: TFormState,
   updateErrors: (errors: Record<string, string>) => void,
   form: DsForm,

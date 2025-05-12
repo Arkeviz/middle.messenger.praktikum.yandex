@@ -30,14 +30,14 @@ export default class DsDialog extends Block<IDsModalProps> {
       className: 'ds-dialog__overlay' + className,
       events: {
         click: (event: Event) => {
-          this._closeDialog(event)
+          this._closeOnClickOverlay(event)
         },
       },
     })
   }
 
   /** Закрытие диалога при клике на оверлей */
-  private _closeDialog(event: Event) {
+  private _closeOnClickOverlay(event: Event) {
     const target = event.target as HTMLElement
 
     if (target.classList.contains('ds-dialog__overlay')) {

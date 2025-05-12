@@ -145,6 +145,7 @@
     display: flex;
     flex-direction: column;
     align-items: start;
+
     .ds-button__link {
       height: fit-content;
       font-size: 13px;
@@ -193,13 +194,12 @@
 }
 
 .avatar-upload {
-
-  &__dialog {}
   &__confirm-button {
     margin-top: 60px;
     font-size: 13px;
     width: 280px;
   }
+
   &__body {
     padding-bottom: 0;
   }

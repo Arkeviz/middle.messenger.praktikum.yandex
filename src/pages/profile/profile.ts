@@ -72,7 +72,7 @@ export default class ProfilePage extends Block {
 
     // Заполняем стейт и ошибки формы изменения данных профиля
     mockUserData.profileFormFields.forEach((field) => {
-      profileFormState[field.name] = {
+      profileFormState[field.name as keyof TChangeProfileFormState] = {
         value: field.value ?? '',
         rules: formsRules[field.name] ?? [],
       }
@@ -110,9 +110,8 @@ export default class ProfilePage extends Block {
           nativeType: 'submit',
         }),
       ],
-      onSubmit: (event: Event) =>
+      onSubmit: () =>
         handleFormSubmit(
-          event,
           this.props.profileFormState as TChangeProfileFormState,
           (profileErrors) => this.setProps({ profileErrors }),
           this.children.changeProfileForm as DsForm,
@@ -125,7 +124,7 @@ export default class ProfilePage extends Block {
 
     // Заполняем стейт и ошибки формы смены пароля
     mockUserData.editPasswordFormFields.forEach((field) => {
-      passwordFormState[field.name] = {
+      passwordFormState[field.name as keyof TChangePasswordFormState] = {
         value: field.value ?? '',
         rules: formsRules[field.name] ?? [],
       }
@@ -163,9 +162,8 @@ export default class ProfilePage extends Block {
           nativeType: 'submit',
         }),
       ],
-      onSubmit: (event: Event) =>
+      onSubmit: () =>
         handleFormSubmit(
-          event,
           this.props.passwordFormState as TChangeProfileFormState,
           (passwordErrors) => this.setProps({ passwordErrors }),
           this.children.changePasswordForm as DsForm,
@@ -209,22 +207,25 @@ export default class ProfilePage extends Block {
           nativeType: 'submit',
         }),
       ],
-      onSubmit: (event: Event) => {
+      onSubmit: () => {
         const isSuccess = handleFormSubmit(
-          event,
           this.props.uploadAvatarFormState as TChangeAvatarFormState,
           (uploadAvatarErrors) => this.setProps({ uploadAvatarErrors }),
           this.children.uploadAvatarForm as DsForm,
         )
 
         if (!isSuccess) {
-          this.children.uploadAvatarDialog.setProps({
+          ;(
+            this.children.uploadAvatarDialog as typeof uploadAvatarDialog
+          ).setProps({
             isError: true,
             title: 'Ошибка, попробуйте ещё раз',
             footerContent: `<p class="ds-dialog__confirm-error">Нужно выбрать файл</p>`,
           })
         } else {
-          this.children.uploadAvatarDialog.setProps({
+          ;(
+            this.children.uploadAvatarDialog as typeof uploadAvatarDialog
+          ).setProps({
             isError: false,
             title: 'Успешно!',
             footerContent: '',
@@ -239,7 +240,15 @@ export default class ProfilePage extends Block {
       content: uploadAvatarForm,
       bodyClass: 'avatar-upload__body',
       onClose: () => {
+        // @ts-ignore
         this.children.uploadAvatarForm.children.fields[0]?.resetInput?.()
+        ;(
+          this.children.uploadAvatarDialog as typeof uploadAvatarDialog
+        ).setProps({
+          isError: false,
+          title: 'Загрузите файл',
+          footerContent: '',
+        })
       },
     })
 
@@ -291,6 +300,8 @@ export default class ProfilePage extends Block {
       uploadAvatarErrors,
       uploadAvatarForm,
       uploadAvatarDialog,
+      onDialogOpen: () =>
+        (this.children?.uploadAvatarDialog as DsDialog)?.openDialog?.(),
     })
   }
 
@@ -321,7 +332,7 @@ export default class ProfilePage extends Block {
           !(isEditProfile || isEditPassword)
             ? `
                 <div class="profile__data">
-                  ${this.renderStubs()}
+                  ${this._renderStubs()}
                 </div>
 
                 <div class="profile__actions">
@@ -343,7 +354,7 @@ export default class ProfilePage extends Block {
     `
   }
 
-  private renderStubs() {
+  private _renderStubs() {
     return mockUserData.profileFormFields
       .map(
         (field) => `
@@ -357,13 +368,27 @@ export default class ProfilePage extends Block {
       .join('')
   }
 
-  componentDidMount() {
+  /** Добавить слушатель события */
+  private _addOpenDialogListener() {
     const avatarButton = this.element.querySelector('.profile__avatar')
-    if (avatarButton) {
-      avatarButton.addEventListener('click', () => {
-        this.children?.uploadAvatarDialog?.openDialog?.()
-      })
-    }
+
+    avatarButton?.removeEventListener(
+      'click',
+      this.props.onDialogOpen as (event: Event) => void,
+    )
+    avatarButton?.addEventListener(
+      'click',
+      this.props.onDialogOpen as (event: Event) => void,
+    )
+  }
+
+  componentDidMount() {
+    this._addOpenDialogListener()
+    return true
+  }
+
+  componentDidUpdate() {
+    this._addOpenDialogListener()
     return true
   }
 }

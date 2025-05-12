@@ -16,6 +16,14 @@
   }
 
   &:not(&__link) {
+    &:hover {
+      background-color: color.mix($base-color, #FFF, 85%);
+    }
+
+    &:active {
+      background-color: color.mix($base-color, #000, 65%);
+    }
+
     &:disabled {
       cursor: not-allowed;
 
@@ -26,14 +34,6 @@
       &:active {
         background-color: $base-color;
       }
-    }
-
-    &:hover {
-      background-color: color.mix($base-color, #FFF, 85%);
-    }
-
-    &:active {
-      background-color: color.mix($base-color, #000, 65%);
     }
   }
 
@@ -43,6 +43,14 @@
     border-radius: 0;
     color: $base-color;
 
+    &:hover {
+      color: color.mix($base-color, #FFF, 65%);
+    }
+
+    &:active {
+      color: color.mix($base-color, #000, 65%);
+    }
+
     &:disabled {
       cursor: not-allowed;
 
@@ -53,14 +61,6 @@
       &:active {
         color: $base-color;
       }
-    }
-
-    &:hover {
-      color: color.mix($base-color, #FFF, 65%);
-    }
-
-    &:active {
-      color: color.mix($base-color, #000, 65%);
     }
   }
 

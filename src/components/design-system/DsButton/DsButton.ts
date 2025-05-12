@@ -6,11 +6,17 @@ import { DsIcon } from '../DsIcon'
 interface IBaseButtonProps extends IBaseBlockProps {
   nativeType?: HTMLButtonElement['type']
   type?: 'primary' | 'link' | 'icon'
+
+  // Здесь `unknown` не подходит из-за `IBaseBlockProps` Блока
+
   /** Основной контент кнопки */
+  // @ts-ignore
   content?: string | Block<any>
   /** Контент ДО основного */
+  // @ts-ignore
   prepend?: string | Block<any>
   /** Контент ПОСЛЕ основного */
+  // @ts-ignore
   append?: string | Block<any>
   iconName?: string
   iconClass?: string

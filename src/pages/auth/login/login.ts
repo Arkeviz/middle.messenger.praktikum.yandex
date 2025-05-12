@@ -83,9 +83,8 @@ export default class LoginPage extends Block {
             dataPage: PAGES.REGISTER,
           }),
         ],
-        onSubmit: (event: Event) =>
+        onSubmit: () =>
           handleFormSubmit(
-            event,
             this.props.formState as TLoginFormState,
             (errors) => this.setProps({ errors }),
             this.children.AuthForm as DsForm,

@@ -18,25 +18,25 @@ export default class ChatsList extends Block<IChatSidebarProps> {
       ...props,
       className: 'chats-list',
       events: {
-        click: (event: Event) => this.handleChatClick(event),
+        click: (event: Event) => this._handleChatClick(event),
       },
     })
   }
 
-  private handleChatClick(event: Event) {
+  private _handleChatClick(event: Event) {
     const targetChat = (event.target as HTMLElement).closest(
       '.chat-item-wrapper',
     )
     const chatId = +targetChat!.getAttribute('data-chat-id')!
 
-    this.setActiveChat(chatId)
+    this._setActiveChat(chatId)
 
     if (targetChat) {
       this.props.onChatSelect?.(chatId)
     }
   }
 
-  private setActiveChat(chatId: number) {
+  private _setActiveChat(chatId: number) {
     const chatItems =
       this.element.querySelectorAll<HTMLElement>('.chat-item-wrapper')
 

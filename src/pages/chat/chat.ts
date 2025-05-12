@@ -24,6 +24,11 @@ type TAddUserFormState = Record<
 >
 
 export default class ChatPage extends Block {
+  // + TODO доделать хедер
+  // + TODO доделать футер
+  // + TODO сделать страницы 404, 500
+  // TODO перепроверить
+  // TODO поправить косяки
   constructor() {
     const addUserFormState = {
       login: {
@@ -60,9 +65,8 @@ export default class ChatPage extends Block {
           nativeType: 'submit',
         }),
       ],
-      onSubmit: (event: Event) =>
+      onSubmit: () =>
         handleFormSubmit(
-          event,
           this.props.addUserFormState as TAddUserFormState,
           (addUserErrors) => this.setProps({ addUserErrors }),
           this.children.addUserForm as DsForm,
@@ -88,20 +92,8 @@ export default class ChatPage extends Block {
               null,
             activeChatId,
           })
-          this.children.ChatSidebar.props.activeChatId = activeChatId
-
-          // Добавляем слушатели на форму, т.к. на хуках
-          // `componentDidUpdate` и `componentDidMount`
-          // всё ещё старый контент
-          const footer = this.element.querySelector('.chat__footer')
-          footer?.removeEventListener(
-            'submit',
-            this.props.onChatSubmit as (event: Event) => void,
-          )
-          footer?.addEventListener(
-            'submit',
-            this.props.onChatSubmit as (event: Event) => void,
-          )
+          ;(this.children.ChatSidebar as ChatSidebar).props.activeChatId =
+            activeChatId
         },
       }),
       SettingsButton: new DsButton({
@@ -141,6 +133,10 @@ export default class ChatPage extends Block {
         bodyClass: 'add-user-dialog',
         content: addUserForm,
         onClose: () => {
+          // Крайне тяжело-типизируемый момент:
+          // нужно как-то подтягивать типы для детей, которые всё равно приходят как пропсы
+          // не смог придумать как это пофиксить
+          // @ts-ignore
           this.children.addUserForm.children.fields[0]?.resetInput?.()
         },
       }),
@@ -148,7 +144,7 @@ export default class ChatPage extends Block {
   }
 
   /** Генерация одного сообщения */
-  private getMessage(message: TChatData['messages'][0]) {
+  private _getMessage(message: TChatData['messages'][0]) {
     const isCurrentUserMessage = mockUserData.login === message.user.login
 
     return `
@@ -185,7 +181,7 @@ export default class ChatPage extends Block {
   }
 
   /** Генерация всех сообщений и даты-разделители между ними */
-  private getMessages() {
+  private _getMessages() {
     const messages = (this.props.activeChat as TChatData).messages
 
     let finalString = ''
@@ -201,7 +197,7 @@ export default class ChatPage extends Block {
 
         finalString +=
           `<div class="chat__messages-date">${formattedDate}</div>` +
-          this.getMessage(messages[i])
+          this._getMessage(messages[i])
         continue
       }
 
@@ -223,13 +219,30 @@ export default class ChatPage extends Block {
         })
         finalString +=
           `<div class="chat__messages-date">${date}</div>` +
-          this.getMessage(messages[i])
+          this._getMessage(messages[i])
       } else {
-        finalString += this.getMessage(messages[i])
+        finalString += this._getMessage(messages[i])
       }
     }
 
     return finalString
+  }
+
+  private _addChatInputListener() {
+    const footer = this.element.querySelector('.chat__footer')
+    footer?.removeEventListener(
+      'submit',
+      this.props.onChatSubmit as (event: Event) => void,
+    )
+    footer?.addEventListener(
+      'submit',
+      this.props.onChatSubmit as (event: Event) => void,
+    )
+  }
+
+  componentDidUpdate() {
+    this._addChatInputListener()
+    return true
   }
 
   render(): string {
@@ -254,7 +267,7 @@ export default class ChatPage extends Block {
 
                 <div class="chat__messages">
                   <div class="chat__messages-wrapper">
-                    ${this.getMessages()}
+                    ${this._getMessages()}
                   </div>
                 </div>
 
