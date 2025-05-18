@@ -3,23 +3,33 @@
   display: flex;
   align-items: center;
   width: 100%;
-  padding-bottom: 4px;
-
+  padding-bottom: 10px;
+  margin-bottom: 12px;
   border-bottom: 1px solid $border-base;
+  font-size: 13px;
+  line-height: 13px;
 
   &:has(.profile-input__input:focus) {
     border-color: $base-color;
+  }
+
+  &:has(.profile-input__input:invalid) {
+    margin-bottom: 48px;
   }
 
   &__input {
     width: 100%;
     background: transparent;
     border: none;
-    color: $text-secondary-color;
+    color: $text-base-color;
     text-align: end;
 
     &:focus {
       outline: none;
+    }
+
+    &::placeholder {
+      color: $text-secondary-color;
     }
   }
 
@@ -29,12 +39,12 @@
 
   &__validation-label {
     position: absolute;
-    right: 0;
-    bottom: -16px;
+    left: 0;
+    top: 110%;
     visibility: hidden;
     margin: 0;
     color: $error-color;
-    font-size: 8px;
+    font-size: 12px;
     font-weight: 400;
   }
 

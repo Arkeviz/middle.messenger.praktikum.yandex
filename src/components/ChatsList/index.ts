@@ -1,2 +1,2 @@
 import './ChatsList.scss'
-export { default as ChatsList } from './ChatsList.hbs?raw'
+export { default as ChatsList } from './ChatsList.ts'

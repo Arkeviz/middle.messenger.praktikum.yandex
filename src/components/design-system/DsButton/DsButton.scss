@@ -1,3 +1,5 @@
+@use 'sass:color';
+
 .ds-button {
   height: 37px;
   padding: 0 4px;
@@ -8,12 +10,31 @@
   cursor: pointer;
   transition: background-color .15s ease-in, color .15s ease-in;
 
-  &:not(&__link):hover {
-    background-color: mix($base-color, #FFF, 85);
+  &:focus-visible {
+    outline: 1px solid color.mix($base-color, #FFF, 65%);
+    outline-offset: 2px;
   }
 
-  &:not(&__link):active {
-    background-color: mix($base-color, #000, 65);
+  &:not(&__link) {
+    &:hover {
+      background-color: color.mix($base-color, #FFF, 85%);
+    }
+
+    &:active {
+      background-color: color.mix($base-color, #000, 65%);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+
+      &:hover {
+        background-color: $base-color;
+      }
+
+      &:active {
+        background-color: $base-color;
+      }
+    }
   }
 
   &__link {
@@ -23,17 +44,24 @@
     color: $base-color;
 
     &:hover {
-      color: mix($base-color, #FFF, 65);
+      color: color.mix($base-color, #FFF, 65%);
     }
 
     &:active {
-      color: mix($base-color, #000, 65);
+      color: color.mix($base-color, #000, 65%);
     }
-  }
 
-  &:focus-visible {
-    outline: 1px solid mix($base-color, #FFF, 65);
-    outline-offset: 2px;
+    &:disabled {
+      cursor: not-allowed;
+
+      &:hover {
+        color: $base-color;
+      }
+
+      &:active {
+        color: $base-color;
+      }
+    }
   }
 
   &__icon {

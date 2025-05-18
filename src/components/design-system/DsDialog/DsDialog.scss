@@ -1,8 +1,9 @@
-.ds-dialog-overlay {
+.ds-dialog__overlay {
+  display: none;
   position: fixed;
   z-index: 8000;
   inset: 0;
-  background-color: rgba(0,0,0,.4);
+  background-color: rgb(0 0 0 / 40%);
 }
 
 .ds-dialog {
@@ -36,7 +37,7 @@
 
   &__confirm-error {
     width: 100%;
-    margin: 14px 0 0 0;
+    margin: 14px 0 0;
     color: $error-color;
     font-weight: 500;
     font-size: 11px;

@@ -1,2 +1,2 @@
 import './navigation.scss'
-export { default as NavPage } from './navigation.hbs?raw'
+export { default as NavPage } from './navigation.ts'

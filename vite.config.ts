@@ -13,7 +13,7 @@ export default defineConfig({
     preprocessorOptions: {
       scss: {
         additionalData: `
-          @import '/src/assets/scss/variables';
+          @use '/src/assets/scss/variables' as *;
         `,
       },
     },

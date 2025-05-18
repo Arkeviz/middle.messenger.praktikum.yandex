@@ -1,69 +1,38 @@
-import './assets/scss/normalize.css'
+import './assets/scss/normalize.scss'
 import './assets/fonts/fonts.scss'
 import './assets/scss/main.scss'
 
-import Handlebars from 'handlebars'
-import * as Components from './components'
-import * as Layouts from './layouts'
+import { PAGES } from './constants'
 import * as Pages from './pages'
-
-import registerJSON from './mocks/register.json'
-import profileJSON from './mocks/profile.json'
-import changeProfileDataJSON from './mocks/change-profile-data.json'
-import changeProfilePasswordJSON from './mocks/change-profile-password.json'
-import chatsJSON from './mocks/chats.json'
-import currentChatJSON from './mocks/current-chat-messages.json'
-import chatsWithCurrentJSON from './mocks/chats-with-active.json'
-
-const AppPartials = [...Object.entries(Layouts), ...Object.entries(Components)]
-
-AppPartials.forEach(([name, template]) => {
-  Handlebars.registerPartial(name, template)
-})
+import renderApp from './core/renderApp.ts'
 
 const pages = {
-  login: [Pages.LoginPage],
-  nav: [Pages.NavPage],
-  register: [Pages.RegisterPage, registerJSON],
-  profile: [Pages.ProfilePage, profileJSON],
-  'change-profile-data': [Pages.ProfileChangePage, changeProfileDataJSON],
-  'change-profile-password': [
-    Pages.ProfilePasswordChangePage,
-    changeProfilePasswordJSON,
-  ],
-  'empty-chat': [Pages.EmptyChatPage, chatsJSON],
-  'current-chat': [
-    Pages.CurrentChatPage,
-    { ...currentChatJSON, ...chatsWithCurrentJSON },
-  ],
-  'chat-search-results': [
-    Pages.ChatSearchResultsPage,
-    { isSearchResults: true, ...chatsJSON },
-  ],
-  'change-avatar': [Pages.ChangeAvatarDialog],
-  'loaded-file': [Pages.LoadedFileDialog],
-  'on-load-error': [Pages.OnLoadErrorDialog],
-  'add-user': [Pages.AddUserDialog],
-  'delete-user': [Pages.DeleteUserDialog],
-  'error-404': [Pages.ErrPage404],
-  'error-500': [Pages.ErrPage500],
-} as const
+  [PAGES.LOGIN]: Pages.LoginPage,
+  [PAGES.NAV]: Pages.NavPage,
+  [PAGES.REGISTER]: Pages.RegisterPage,
+  [PAGES.PROFILE]: Pages.ProfilePage,
+  [PAGES.CHATS]: Pages.ChatPage,
+  [PAGES.ERROR_404]: Pages.ErrPage404,
+  [PAGES.ERROR_500]: Pages.ErrPage500,
+}
 
 type TPageKey = keyof typeof pages
 
-function navigate(page: TPageKey) {
-  const [source, context] = pages[page]
-  const container = document.getElementById('app')!
+export function navigate(page: TPageKey) {
+  const sourcePage = pages[page]
+  if (sourcePage) {
+    renderApp(new sourcePage())
+    return
+  }
 
-  const getTemplate = Handlebars.compile(source)
-  container.innerHTML = getTemplate(context)
+  console.error(`Страница «${page}» не найдена`)
 }
 
-document.addEventListener('DOMContentLoaded', () => navigate('nav'))
+document.addEventListener('DOMContentLoaded', () => navigate(PAGES.NAV))
 
 document.addEventListener('click', (e) => {
-  const { target } = e
-  if (target instanceof HTMLElement) {
+  const target = e.target as HTMLElement
+  if (target) {
     const page = target.getAttribute('data-page')
 
     if (!page || !(page in pages)) {

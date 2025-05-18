@@ -1,2 +1,2 @@
 import './ChatSearch.scss'
-export { default as ChatSearch } from './ChatSearch.hbs?raw'
+export { default as ChatSearch } from './ChatSearch.ts'

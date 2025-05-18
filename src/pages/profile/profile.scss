@@ -1,4 +1,42 @@
+@use 'sass:color';
+
+.profile-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
 .profile {
+  &__sidebar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 100%;
+    background-color: $sidebar-bg;
+    border-right: 1px solid $border-base;
+
+    .ds-button {
+      width: 28px;
+      height: 28px;
+      padding: 0;
+    }
+  }
+
+  &__icon {
+    color: #FFF;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
   &__avatar {
     position: relative;
     display: flex;
@@ -6,7 +44,7 @@
     align-items: center;
     width: 130px;
     height: 130px;
-    margin: 60px 0 0 0;
+    margin: 60px 0 0;
     padding: 0;
     background-color: $gray-bg;
     border: none;
@@ -37,24 +75,21 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
-
       width: 100%;
       height: 100%;
       border-radius: 50%;
-
       color: #FFF;
       font-weight: 500;
       font-size: 13px;
       line-height: 14px;
       text-align: center;
-
       transition: opacity .2s ease, visibility 0s;
     }
 
     &:hover &-change-text {
       visibility: visible;
       opacity: 1;
-      background-color: rgba(0,0,0,.5);
+      background-color: rgb(0 0 0 / 50%);
     }
   }
 
@@ -63,7 +98,11 @@
     font-size: 16px;
     line-height: 16px;
     text-align: center;
-    margin: 21px 0 60px 0;
+    margin: 21px 0 60px;
+
+    &_hidden {
+      visibility: hidden;
+    }
   }
 
   &__data, &__actions {
@@ -98,11 +137,15 @@
     &:last-child {
       visibility: hidden;
       border: none;
-      margin: 0 0 60px 0;
+      margin: 0 0 60px;
     }
   }
 
   &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
     .ds-button__link {
       height: fit-content;
       font-size: 13px;
@@ -112,12 +155,109 @@
         color: $error-color;
 
         &:hover {
-          color: mix($error-color, #FFF, 65);
+          color: color.mix($error-color, #FFF, 65%);
         }
+
         &:active {
-          color: mix($error-color, #000, 65);
+          color: color.mix($error-color, #000, 65%);
         }
       }
     }
+  }
+}
+
+.profile-change {
+  &__data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+    width: 100%;
+    max-width: 510px;
+    min-height: 204px;
+  }
+
+  &__password {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 510px;
+    min-height: 204px;
+  }
+
+  &__save-button {
+    margin-top: 60px;
+    font-size: 13px;
+    width: 280px;
+  }
+}
+
+.avatar-upload {
+  &__confirm-button {
+    margin-top: 60px;
+    font-size: 13px;
+    width: 280px;
+  }
+
+  &__body {
+    padding-bottom: 0;
+  }
+}
+
+.profile-dialog {
+  &__file-upload {
+    .ds-dialog__body {
+      padding-bottom: 0;
+    }
+
+    /*
+      избавляемся от обычного футера, чтобы добавить свой,
+      но уже внутри `form`
+    */
+    .ds-dialog__footer {
+      display: none;
+    }
+
+    .ds-button {
+      width: 100%;
+      margin-top: 45px;
+    }
+  }
+
+  &__change-avatar {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__choice-file {
+    display: block;
+    width: fit-content;
+    margin-bottom: auto;
+  }
+}
+
+.choice-file__text {
+  color: $base-color;
+  text-decoration: underline;
+  transition: color .15s ease-in;
+  cursor: pointer;
+
+  &:hover {
+    color: color.mix($base-color, #FFF, 65%);
+  }
+
+  &:active {
+    color: color.mix($base-color, #000, 65%);
+  }
+}
+
+.choice-file {
+  &__input {
+    display: none;
   }
 }

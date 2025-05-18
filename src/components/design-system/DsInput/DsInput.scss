@@ -19,6 +19,24 @@
     }
   }
 
+  &-file {
+    cursor: pointer;
+
+    &__text {
+      color: $base-color;
+      text-decoration: underline;
+
+      &_uploaded {
+        color: #8D8D8D;
+        text-decoration: none;
+      }
+    }
+  }
+
+  &__input[type="file"] {
+    display: none;
+  }
+
   &__label {
     position: absolute;
     top: 0;
@@ -29,8 +47,9 @@
     transition: transform 200ms;
   }
 
+  &__input_filled + &__label,
   &__input:focus + &__label,
-  &__input:not(:placeholder-shown) + &__label{
+  &__input:placeholder-shown + &__label {
     transform: translateY(-100%) scale(0.75);
   }
 
@@ -38,7 +57,7 @@
     visibility: hidden;
     margin-top: 8px;
     color: $error-color;
-    font-size: 8px;
+    font-size: 12px;
     font-weight: 400;
   }
 
